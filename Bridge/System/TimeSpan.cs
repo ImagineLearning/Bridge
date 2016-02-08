@@ -3,7 +3,6 @@ using Bridge;
 namespace System
 {
     [External]
-    [Name("Bridge.TimeSpan")]
     public struct TimeSpan : IComparable, IComparable<TimeSpan>, IEquatable<TimeSpan>, IFormattable, IBridgeClass
     {
         [InlineConst]
@@ -41,61 +40,51 @@ namespace System
         {
         }
 
-        [Template("Bridge.TimeSpan.neg({t})")]
         public static TimeSpan operator -(TimeSpan t)
         {
             return new TimeSpan();
         }
 
-        [Template("Bridge.TimeSpan.sub({t1}, {t2})")]
         public static TimeSpan operator -(TimeSpan t1, TimeSpan t2)
         {
             return new TimeSpan();
         }
 
-        [Template("Bridge.TimeSpan.neq({t1}, {t2})")]
         public static bool operator !=(TimeSpan t1, TimeSpan t2)
         {
             return false;
         }
 
-        [Template("Bridge.TimeSpan.plus({t})")]
         public static TimeSpan operator +(TimeSpan t)
         {
             return new TimeSpan();
         }
 
-        [Template("Bridge.TimeSpan.add({t1}, {t2})")]
         public static TimeSpan operator +(TimeSpan t1, TimeSpan t2)
         {
             return new TimeSpan();
         }
 
-        [Template("Bridge.TimeSpan.lt({t1}, {t2})")]
         public static bool operator <(TimeSpan t1, TimeSpan t2)
         {
             return false;
         }
 
-        [Template("Bridge.TimeSpan.lte({t1}, {t2})")]
         public static bool operator <=(TimeSpan t1, TimeSpan t2)
         {
             return false;
         }
 
-        [Template("Bridge.TimeSpan.eq({t1}, {t2})")]
         public static bool operator ==(TimeSpan t1, TimeSpan t2)
         {
             return false;
         }
 
-        [Template("Bridge.TimeSpan.gt({t1}, {t2})")]
         public static bool operator >(TimeSpan t1, TimeSpan t2)
         {
             return false;
         }
 
-        [Template("Bridge.TimeSpan.gte({t1}, {t2})")]
         public static bool operator >=(TimeSpan t1, TimeSpan t2)
         {
             return false;
@@ -194,7 +183,6 @@ namespace System
             return new TimeSpan();
         }
 
-        [Template("{t1}.compareTo({t2})")]
         public static int Compare(TimeSpan t1, TimeSpan t2)
         {
             return 0;
@@ -220,7 +208,6 @@ namespace System
             return false;
         }
 
-        [Template("{t1}.ticks === {t2}.ticks")]
         public static bool Equals(TimeSpan t1, TimeSpan t2)
         {
             return false;
@@ -276,13 +263,11 @@ namespace System
             return null;
         }
 
-        [Name("toString")]
         public string Format(string format)
         {
             return null;
         }
 
-        [Name("toString")]
         public string Format(string format, IFormatProvider provider)
         {
             return null;

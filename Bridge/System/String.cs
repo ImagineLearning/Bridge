@@ -12,7 +12,6 @@ namespace System
     /// </summary>
     [External]
     [Name("String")]
-    [Constructor("String")]
     public sealed class String : IEnumerable, IEnumerable<char>, IComparable<String>, IEquatable<String>
     {
         [FieldProperty]
@@ -27,7 +26,6 @@ namespace System
         [InlineConst]
         public const string Empty = "";
 
-        [Template("String.fromCharCode.apply(null, {value})")]
         public String(char[] value)
         {
         }
@@ -52,12 +50,10 @@ namespace System
         /// </summary>
         /// <param name="c">A character.</param>
         /// <param name="count">The number of times the character occurs.</param>
-        [Template("Bridge.String.fromCharCount({c}, {count})")]
         public String(char c, int count)
         {
         }
 
-        [Template("String.fromCharCode.apply(null, {value}.slice({startIndex}, {startIndex} + {length}))")]
         public extern String(char[] value, int startIndex, int length);
 
         /// <summary>
@@ -65,7 +61,6 @@ namespace System
         /// </summary>
         /// <param name="value">The string to test. </param>
         /// <returns>true if the value parameter is null or an empty string (""); otherwise, false.</returns>
-        [Template("Bridge.String.isNullOrEmpty({value})")]
         public static extern bool IsNullOrEmpty(string value);
 
         /// <summary>
@@ -73,7 +68,6 @@ namespace System
         /// </summary>
         /// <param name="value">The string to test.</param>
         /// <returns>true if the value parameter is null or String.Empty, or if value consists exclusively of white-space characters. </returns>
-        [Template("Bridge.String.isNullOrWhiteSpace({value})")]
         public static extern bool IsNullOrWhiteSpace(string value);
 
         /// <summary>
@@ -109,7 +103,6 @@ namespace System
         /// <param name="a">The first string to compare, or null. </param>
         /// <param name="b">The second string to compare, or null. </param>
         /// <returns>true if the value of a is the same as the value of b; otherwise, false. If both a and b are null, the method returns true.</returns>
-        [Template("Bridge.String.equals({a}, {b})")]
         public static extern bool Equals(string a, string b);
 
         /// <summary>
@@ -119,7 +112,6 @@ namespace System
         /// <param name="b">The second string to compare, or null. </param>
         /// <param name="comparisonType">One of the enumeration values that specifies the rules for the comparison.</param>
         /// <returns>true if the value of a is the same as the value of b; otherwise, false. If both a and b are null, the method returns true.</returns>
-        [Template("Bridge.String.equals({a}, {b}, {comparisonType})")]
         public static extern bool Equals(string a, string b, StringComparison comparisonType);
 
         /// <summary>
@@ -128,7 +120,6 @@ namespace System
         /// <param name="value">The string to compare to this instance.</param>
         /// <param name="comparisonType">One of the enumeration values that specifies how the strings will be compared. </param>
         /// <returns>true if the value of the value parameter is the same as this string; otherwise, false.</returns>
-        [Template("Bridge.String.equals({this}, {value}, {comparisonType})")]
         public extern bool Equals(string value, StringComparison comparisonType);
 
         /// <summary>
@@ -136,7 +127,6 @@ namespace System
         /// </summary>
         /// <param name="value">The string to compare to this instance.</param>
         /// <returns>true if the value of the value parameter is the same as this string; otherwise, false.</returns>
-        [Template("Bridge.String.equals({this}, {value})")]
         public extern bool Equals(string value);
 
         /// <summary>
@@ -145,7 +135,6 @@ namespace System
         /// <param name="string1">Strings to concatenate to this string.</param>
         /// <param name="string2">Strings to concatenate to this string.</param>
         /// <returns></returns>
-        [Template("[{string1}, {string2}].join('')")]
         public static extern string Concat(string string1, string string2);
 
         /// <summary>
@@ -155,7 +144,6 @@ namespace System
         /// <param name="string2">Strings to concatenate to this string.</param>
         /// <param name="string3">Strings to concatenate to this string.</param>
         /// <returns></returns>
-        [Template("[{string1}, {string2}, {string3}].join('')")]
         public static extern string Concat(string string1, string string2, string string3);
 
         /// <summary>
@@ -166,7 +154,6 @@ namespace System
         /// <param name="string3">Strings to concatenate to this string.</param>
         /// <param name="string4">Strings to concatenate to this string.</param>
         /// <returns></returns>
-        [Template("[{string1}, {string2}, {string3}, {string4}].join('')")]
         public static extern string Concat(string string1, string string2, string string3, string string4);
 
         /// <summary>
@@ -174,7 +161,6 @@ namespace System
         /// </summary>
         /// <param name="strings">Strings to concatenate to this string.</param>
         /// <returns></returns>
-        [Template("{strings:array}.toString().split(',').join('')")]
         public static extern string Concat(params string[] strings);
 
         /// <summary>
@@ -183,7 +169,6 @@ namespace System
         /// <param name="object1">Strings to concatenate to this string.</param>
         /// <param name="object2">Strings to concatenate to this string.</param>
         /// <returns></returns>
-        [Template("[{object1}, {object2}].join('')")]
         public static extern string Concat(object object1, object object2);
 
         /// <summary>
@@ -193,7 +178,6 @@ namespace System
         /// <param name="object2">Strings to concatenate to this string.</param>
         /// <param name="object3">Strings to concatenate to this string.</param>
         /// <returns></returns>
-        [Template("[{object1}, {object2}, {object3}].join('')")]
         public static extern string Concat(object object1, object object2, object object3);
 
         /// <summary>
@@ -204,7 +188,6 @@ namespace System
         /// <param name="object3">Strings to concatenate to this string.</param>
         /// <param name="object4">Strings to concatenate to this string.</param>
         /// <returns></returns>
-        [Template("[{object1}, {object2}, {object3}, {object4}].join('')")]
         public static extern string Concat(object object1, object object2, object object3, object object4);
 
         /// <summary>
@@ -212,7 +195,6 @@ namespace System
         /// </summary>
         /// <param name="objects">Strings to concatenate to this string.</param>
         /// <returns></returns>
-        [Template("{objects:array}.toString().split(',').join('')")]
         public static extern string Concat(params object[] objects);
 
         /// <summary>
@@ -221,7 +203,6 @@ namespace System
         /// <param name="strA">The first string to compare.</param>
         /// <param name="strB">The second string to compare.</param>
         /// <returns></returns>
-        [Template("Bridge.String.compare({strA}, {strB})")]
         public static extern int Compare(string strA, string strB);
 
         /// <summary>
@@ -231,7 +212,6 @@ namespace System
         /// <param name="strB">The second string to compare.</param>
         /// <param name="ignoreCase">true to ignore case during the comparison; otherwise, false.</param>
         /// <returns></returns>
-        [Template("Bridge.String.compare({strA}, {strB}, {ignoreCase})")]
         public static extern int Compare(string strA, string strB, bool ignoreCase);
 
         /// <summary>
@@ -243,7 +223,6 @@ namespace System
         /// <param name="indexB">The position of the substring within strB.</param>
         /// <param name="length">The maximum number of characters in the substrings to compare.</param>
         /// <returns></returns>
-        [Template("Bridge.String.compare({strA}.substr({indexA}, {length}), {strB}.substr({indexB}, {length}))")]
         public static extern int Compare(string strA, int indexA, string strB, int indexB, int length);
 
         /// <summary>
@@ -256,19 +235,14 @@ namespace System
         /// <param name="length">The maximum number of characters in the substrings to compare.</param>
         /// <param name="ignoreCase">true to ignore case during the comparison; otherwise, false.</param>
         /// <returns></returns>
-        [Template("Bridge.String.compare({strA}.substr({indexA}, {length}), {strB}.substr({indexB}, {length}), {ignoreCase})")]
         public static extern int Compare(string strA, int indexA, string strB, int indexB, int length, bool ignoreCase);
 
-        [Template("Bridge.String.compare({strA}, {strB}, {comparisonType})")]
         public static extern int Compare(string strA, string strB, StringComparison comparisonType);
 
-        [Template("Bridge.String.compare({strA}, {strB}, {ignoreCase}, {culture})")]
         public static extern int Compare(string strA, string strB, bool ignoreCase, CultureInfo culture);
 
-        [Template("Bridge.String.compare({strA}.substr({indexA}, {length}), {strB}.substr({indexB}, {length}), {comparisonType})")]
         public static extern int Compare(string strA, int indexA, string strB, int indexB, int length, StringComparison comparisonType);
 
-        [Template("Bridge.String.compare({strA}.substr({indexA}, {length}), {strB}.substr({indexB}, {length}), {ignoreCase}, {culture})")]
         public static extern int Compare(string strA, int indexA, string strB, int indexB, int length, bool ignoreCase, CultureInfo culture);
 
         /// <summary>
@@ -276,7 +250,6 @@ namespace System
         /// </summary>
         /// <param name="searchValue">A character to search for.</param>
         /// <returns>The zero-based index position of value if that character is found, or -1 if it is not.</returns>
-        [Template("Bridge.String.indexOf({this}, String.fromCharCode({searchValue}))")]
         public int IndexOf(char searchValue)
         {
             return -1;
@@ -288,7 +261,6 @@ namespace System
         /// <param name="searchValue">A character to search for.</param>
         /// <param name="fromIndex">The location within the calling string to start the search from.</param>
         /// <returns>The zero-based index position of value if that character is found, or -1 if it is not.</returns>
-        [Template("Bridge.String.indexOf({this}, String.fromCharCode({searchValue}), {fromIndex})")]
         public int IndexOf(char searchValue, int fromIndex)
         {
             return -1;
@@ -299,7 +271,6 @@ namespace System
         /// </summary>
         /// <param name="searchValue">A string representing the value to search for.</param>
         /// <returns></returns>
-        [Template("Bridge.String.indexOf({this}, {searchValue})")]
         public int IndexOf(string searchValue)
         {
             return -1;
@@ -311,7 +282,6 @@ namespace System
         /// <param name="searchValue">A string representing the value to search for.</param>
         /// <param name="fromIndex">The location within the calling string to start the search from.</param>
         /// <returns></returns>
-        [Template("Bridge.String.indexOf({this}, {searchValue}, {fromIndex})")]
         public int IndexOf(string searchValue, int fromIndex)
         {
             return -1;
@@ -325,7 +295,6 @@ namespace System
         /// <param name="fromIndex">The location within the calling string to start the search from.</param>
         /// <param name="count">The number of character positions to examine.</param>
         /// <returns></returns>
-        [Template("Bridge.String.indexOf({this}, String.fromCharCode({searchValue}), {fromIndex}, {count})")]
         public int IndexOf(char searchValue, int fromIndex, int count)
         {
             return -1;
@@ -339,7 +308,6 @@ namespace System
         /// <param name="fromIndex">The location within the calling string to start the search from.</param>
         /// <param name="count">The number of character positions to examine.</param>
         /// <returns></returns>
-        [Template("Bridge.String.indexOf({this}, {searchValue}, {fromIndex}, {count})")]
         public int IndexOf(string searchValue, int fromIndex, int count)
         {
             return -1;
@@ -352,7 +320,6 @@ namespace System
         /// <param name="searchValue">The string to search for.</param>
         /// <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
         /// <returns>The zero-based index position of value if that string is found, or -1 if it is not. If value is System.String.Empty, the return value is 0.</returns>
-        [Template("Bridge.String.indexOf({this}, {searchValue}, 0, {this}.length, {comparisonType})")]
         public int IndexOf(string searchValue, StringComparison comparisonType)
         {
             return -1;
@@ -366,7 +333,6 @@ namespace System
         /// <param name="fromIndex">The search starting position.</param>
         /// <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
         /// <returns>The zero-based index position of value if that string is found, or -1 if it is not. If value is System.String.Empty, the return value is 0.</returns>
-        [Template("Bridge.String.indexOf({this}, {searchValue}, {fromIndex}, {this}.length, {comparisonType})")]
         public int IndexOf(string searchValue, int fromIndex, StringComparison comparisonType)
         {
             return -1;
@@ -382,35 +348,27 @@ namespace System
         /// <param name="count">The number of character positions to examine.</param>
         /// <param name="comparisonType">One of the enumeration values that specifies the rules for the search.</param>
         /// <returns>The zero-based index position of value if that string is found, or -1 if it is not. If value is System.String.Empty, the return value is 0.</returns>
-        [Template("Bridge.String.indexOf({this}, {searchValue}, {fromIndex}, {count}, {comparisonType})")]
         public int IndexOf(string searchValue, int fromIndex, int count, StringComparison comparisonType)
         {
             return -1;
         }
 
-        [Template("{this}.lastIndexOf(String.fromCharCode({ch}))")]
         public extern int LastIndexOf(char ch);
 
         public extern int LastIndexOf(string subString);
 
         public extern int LastIndexOf(string subString, int startIndex);
 
-        [Template("Bridge.String.lastIndexOf({this}, String.fromCharCode({ch}), {startIndex}, {count})")]
         public extern int LastIndexOf(char ch, int startIndex, int count);
 
-        [Template("Bridge.String.lastIndexOf({this}, {subString}, {startIndex}, {count})")]
         public extern int LastIndexOf(string subString, int startIndex, int count);
 
-        [Template("{this}.lastIndexOf(String.fromCharCode({ch}), {startIndex})")]
         public extern int LastIndexOf(char ch, int startIndex);
 
-        [Template("Bridge.String.lastIndexOfAny({this}, {ch:array})")]
         public extern int LastIndexOfAny(params char[] ch);
 
-        [Template("Bridge.String.lastIndexOfAny({this}, {ch}, {startIndex})")]
         public extern int LastIndexOfAny(char[] ch, int startIndex);
 
-        [Template("Bridge.String.lastIndexOfAny({this}, {ch}, {startIndex}, {count})")]
         public extern int LastIndexOfAny(char[] ch, int startIndex, int count);
 
         /// <summary>
@@ -500,10 +458,8 @@ namespace System
         /// <param name="substr">A String that is to be replaced by newSubStr.</param>
         /// <param name="newSubStr">The String that replaces the substring received from parameter #1. A number of special replacement patterns are supported; see the "Specifying a string as a parameter" section below.</param>
         /// <returns></returns>
-        [Template("Bridge.String.replaceAll({this}, {substr}, {newSubStr})")]
         public extern string Replace(string substr, string newSubStr);
 
-        [Template("Bridge.String.replaceAll({this}, String.fromCharCode({oldChar}), String.fromCharCode({replaceChar}))")]
         public extern string Replace(char oldChar, char replaceChar);
 
         /// <summary>
@@ -512,7 +468,6 @@ namespace System
         /// <param name="substr">A String that is to be replaced by newSubStr.</param>
         /// <param name="callback"></param>
         /// <returns></returns>
-        [Template("Bridge.String.replaceAll({this}, {substr}, {callback})")]
         public extern string Replace(string substr, Delegate callback);
 
         /// <summary>
@@ -521,7 +476,6 @@ namespace System
         /// <param name="substr">A String that is to be replaced by newSubStr.</param>
         /// <param name="callback"></param>
         /// <returns></returns>
-        [Template("Bridge.String.replaceAll({this}, {substr}, {callback})")]
         public extern string Replace(string substr, Func<string, string> callback);
 
         /// <summary>
@@ -530,7 +484,6 @@ namespace System
         /// <param name="substr">A String that is to be replaced by newSubStr.</param>
         /// <param name="callback"></param>
         /// <returns></returns>
-        [Template("Bridge.String.replaceAll({this}, {substr}, {callback})")]
         public extern string Replace(string substr, Func<string, int, string> callback);
 
         /// <summary>
@@ -539,7 +492,6 @@ namespace System
         /// <param name="substr">A String that is to be replaced by newSubStr.</param>
         /// <param name="callback"></param>
         /// <returns></returns>
-        [Template("Bridge.String.replaceAll({this}, {substr}, {callback})")]
         public extern string Replace(string substr, Func<string, int, string, string> callback);
 
         /// <summary>
@@ -571,32 +523,24 @@ namespace System
         /// <returns></returns>
         public extern string Slice(int beginSlice, int endSlice);
 
-        [Template("Bridge.String.split({this}, {separator:array}.map(function(i) {{ return String.fromCharCode(i); }}))")]
         public extern string[] Split(params char[] separator);
 
-        [Template("Bridge.String.split({this}, {separator}.map(function(i) {{ return String.fromCharCode(i); }}), {limit})")]
         public extern string[] Split(char[] separator, int limit);
 
-        [Template("Bridge.String.split({this}, {separator}.map(function(i) {{ return String.fromCharCode(i); }}), {limit}, {options})")]
         public extern string[] Split(char[] separator, int limit, StringSplitOptions options);
 
-        [Template("Bridge.String.split({this}, {separator}.map(function(i) {{ return String.fromCharCode(i); }}), null, {options})")]
         public extern string[] Split(char[] separator, StringSplitOptions options);
 
-        [Template("Bridge.String.split({this}, {separator}, null, {options})")]
         public extern string[] Split(string[] separator, StringSplitOptions options);
 
-        [Template("Bridge.String.split({this}, {separator}, {limit}, {options})")]
         public extern string[] Split(string[] separator, int limit, StringSplitOptions options);
 
         public extern string[] Split(string separator);
 
-        [Template("{this}.split(String.fromCharCode({separator}))")]
         public extern string[] Split(char separator);
 
         public extern string[] Split(Regex regex);
 
-        [Template("{this}.split(String.fromCharCode({separator}), {limit})")]
         public extern string[] Split(char separator, int limit);
 
         public extern string[] Split(Regex regex, int limit);
@@ -656,14 +600,12 @@ namespace System
         /// The toLower() method returns the calling string value converted to lowercase.
         /// </summary>
         /// <returns></returns>
-        [Template("{this}.toLowerCase()")]
         public extern string ToLower();
 
         /// <summary>
         /// The toUpper() method returns the calling string value converted to uppercase.
         /// </summary>
         /// <returns></returns>
-        [Template("{this}.toUpperCase()")]
         public extern string ToUpper();
 
         /// <summary>
@@ -672,19 +614,14 @@ namespace System
         /// <returns>The trimmed string</returns>
         public extern string Trim();
 
-        [Template("Bridge.String.trim({this}, {values:array})")]
         public extern string Trim(params char[] values);
 
-        [Template("Bridge.String.trimStart({this}, {values:array})")]
         public extern string TrimStart(params char[] values);
 
-        [Template("Bridge.String.trimEnd({this}, {values:array})")]
         public extern string TrimEnd(params char[] values);
 
-        [Template("Bridge.String.trimStart({this})")]
         public extern string TrimStart();
 
-        [Template("Bridge.String.trimEnd({this})")]
         public extern string TrimEnd();
 
         /// <summary>
@@ -692,13 +629,10 @@ namespace System
         /// </summary>
         /// <param name="value">The string to seek. </param>
         /// <returns>true if the value parameter occurs within this string, or if value is the empty string (""); otherwise, false.</returns>
-        [Template("Bridge.String.contains({this},{value})")]
         public extern bool Contains(string value);
 
-        [Template("Bridge.String.endsWith({this}, {suffix})")]
         public extern bool EndsWith(string suffix);
 
-        [Template("Bridge.String.startsWith({this}, {prefix})")]
         public extern bool StartsWith(string prefix);
 
         /// Summary:
@@ -716,7 +650,6 @@ namespace System
         ///     A copy of format in which the format items have been replaced by the string representation
         ///     of the corresponding objects in args.
         ///
-        [Template("Bridge.String.format({format}, {args})")]
         public static extern string Format(string format, params object[] args);
 
         ///
@@ -734,7 +667,6 @@ namespace System
         /// Returns:
         ///     A copy of format in which any format items are replaced by the string representation
         ///     of arg0.
-        [Template("Bridge.String.format({format}, {arg0})")]
         public static extern String Format(String format, object arg0);
 
         ///
@@ -756,7 +688,6 @@ namespace System
         /// Returns:
         ///     A copy of format in which the format items have been replaced by the string representation
         ///     of the corresponding objects in args.
-        [Template("Bridge.String.format({format}, {args})")]
         public static extern String Format(IFormatProvider provider, String format, params object[] args);
 
         ///
@@ -777,7 +708,6 @@ namespace System
         /// Returns:
         ///     A copy of format in which format items are replaced by the string representations
         ///     of arg0 and arg1.
-        [Template("Bridge.String.format({format}, {arg0}, {arg1})")]
         public static extern String Format(String format, object arg0, object arg1);
 
         ///
@@ -801,31 +731,25 @@ namespace System
         /// Returns:
         ///     A copy of format in which the format items have been replaced by the string representations
         ///     of arg0, arg1, and arg2.
-        [Template("Bridge.String.format({format}, {arg0}, {arg1}, {arg2})")]
         public static extern String Format(String format, object arg0, object arg1, object arg2);
 
-        [Template("Bridge.String.indexOfAny({this}, {anyOf})")]
         public int IndexOfAny(char[] anyOf)
         {
             return -1;
         }
 
-        [Template("Bridge.String.indexOfAny({this}, {anyOf}, {startIndex})")]
         public int IndexOfAny(char[] anyOf, int startIndex)
         {
             return -1;
         }
 
-        [Template("Bridge.String.indexOfAny({this}, {anyOf}, {startIndex}, {count})")]
         public int IndexOfAny(char[] anyOf, int startIndex, int count)
         {
             return -1;
         }
 
-        [Template("Bridge.String.toCharArray({this}, 0, {this}.length)")]
         public extern char[] ToCharArray();
 
-        [Template("Bridge.String.toCharArray({this}, {startIndex}, {count})")]
         public extern char[] ToCharArray(int startIndex, int count);
 
         public static bool operator ==(string s1, string s2)
@@ -838,63 +762,44 @@ namespace System
             return false;
         }
 
-        [IndexerName("Chars")]
         public char this[int index]
         {
-            [External]
-            [Template("charCodeAt({0})")]
             get
             {
                 return default(char);
             }
         }
 
-        [Template("Bridge.getEnumerator({this})")]
         public extern CharEnumerator GetEnumerator();
 
-        [Template("Bridge.getEnumerator({this})")]
         extern IEnumerator<char> IEnumerable<char>.GetEnumerator();
 
-        [Template("Bridge.getEnumerator({this})")]
         extern IEnumerator IEnumerable.GetEnumerator();
 
-        [Template("Bridge.String.compare({this}, {other})")]
         public extern int CompareTo(string other);
 
-        [Template("Bridge.String.insert({startIndex}, {this}, {value})")]
         public extern string Insert(int startIndex, string value);
 
-        [Template("{args:array}.join({separator})")]
         public static extern string Join(string separator, params string[] args);
 
-        [Template("{args:array}.join({separator})")]
         public static extern string Join(string separator, params object[] args);
 
-        [Template("Bridge.toArray({args}).join({separator})")]
         public static extern string Join(string separator, IEnumerable<string> args);
 
-        [Template("Bridge.toArray({args}).join({separator})")]
         public static extern string Join<T>(string separator, IEnumerable<T> args);
 
-        [Template("{args}.slice({startIndex}, {startIndex} + {count}).join({separator})")]
         public static extern string Join(string separator, string[] args, int startIndex, int count);
 
-        [Template("Bridge.String.alignString({this}, {totalWidth})")]
         public extern string PadLeft(int totalWidth);
 
-        [Template("Bridge.String.alignString({this}, {totalWidth}, {ch})")]
         public extern string PadLeft(int totalWidth, char ch);
 
-        [Template("Bridge.String.alignString({this}, -{totalWidth})")]
         public extern string PadRight(int totalWidth);
 
-        [Template("Bridge.String.alignString({this}, -{totalWidth}, {ch})")]
         public extern string PadRight(int totalWidth, char ch);
 
-        [Template("Bridge.String.remove({this}, {index})")]
         public extern string Remove(int index);
 
-        [Template("Bridge.String.remove({this}, {index}, {count})")]
         public extern string Remove(int index, int count);
     }
 }

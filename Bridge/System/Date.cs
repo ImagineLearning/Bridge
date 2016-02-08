@@ -3,7 +3,6 @@ using Bridge;
 namespace System
 {
     [External]
-    [Name("Date")]
     public class Date
     {
         public static double operator -(Date d1, Date d2)
@@ -121,25 +120,21 @@ namespace System
             return false;
         }
 
-        [Template("Bridge.equals({0}, {1})")]
         public static bool operator ==(Date d1, object d2)
         {
             return false;
         }
 
-        [Template("Bridge.equals({0}, {1})")]
         public static bool operator ==(Date d1, Date d2)
         {
             return false;
         }
 
-        [Template("!Bridge.equals({0}, {1})")]
         public static bool operator !=(Date d1, object d2)
         {
             return false;
         }
 
-        [Template("!Bridge.equals({0}, {1})")]
         public static bool operator !=(Date d1, Date d2)
         {
             return false;
