@@ -3,7 +3,6 @@ using Bridge;
 namespace System
 {
     [External]
-    [Name("Bridge.ErrorException")]
     public class ErrorException : Exception, IBridgeClass
     {
         public virtual Error Error
