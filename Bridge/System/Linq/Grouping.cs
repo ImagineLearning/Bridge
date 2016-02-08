@@ -9,7 +9,7 @@ namespace System.Linq
     {
         TKey Key
         {
-            [Template("key()")]
+            [Template("Key")]
             get;
         }
     }
@@ -24,7 +24,7 @@ namespace System.Linq
 
         public TKey Key
         {
-            [Template("key()")]
+            [Template("Key")]
             get
             {
                 return default(TKey);

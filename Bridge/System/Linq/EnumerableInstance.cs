@@ -68,7 +68,7 @@ namespace System.Linq
         public extern EnumerableInstance<TResult> CascadeDepthFirst<TResult>(Func<TElement, IEnumerable<TElement>> func,
             Func<TElement, int, TResult> resultSelector);
 
-        [Template("{this}.select(function(x) {{ return Bridge.cast(x, {TResult}); }})")]
+        
         public extern EnumerableInstance<TResult> Cast<TResult>();
 
         public extern EnumerableInstance<TElement> CatchError(Action<Exception> action);
@@ -83,7 +83,7 @@ namespace System.Linq
 
         public extern int Count(Func<TElement, bool> predicate);
 
-        [Template("{this}.defaultIfEmpty(Bridge.getDefaultValue({TElement}))")]
+        
         public extern EnumerableInstance<TElement> DefaultIfEmpty();
 
         public extern EnumerableInstance<TElement> DefaultIfEmpty(TElement defaultValue);
@@ -101,7 +101,7 @@ namespace System.Linq
             return default(TElement);
         }
 
-        [Template("{this}.elementAtOrDefault({index}, Bridge.getDefaultValue({TElement}))")]
+        
         public TElement ElementAtOrDefault(int index)
         {
             return default(TElement);
@@ -128,25 +128,25 @@ namespace System.Linq
             return default(TElement);
         }
 
-        [Template("{this}.firstOrDefault(null, Bridge.getDefaultValue({TElement}))")]
+        
         public TElement FirstOrDefault()
         {
             return default(TElement);
         }
 
-        [Template("{this}.firstOrDefault(null, {defaultValue})")]
+        
         public TElement FirstOrDefault(TElement defaultValue)
         {
             return default(TElement);
         }
 
-        [Template("{this}.firstOrDefault({predicate}, Bridge.getDefaultValue({TElement}))")]
+        
         public TElement FirstOrDefault(Func<TElement, bool> predicate)
         {
             return default(TElement);
         }
 
-        [Template("{this}.firstOrDefault({predicate}, {defaultValue})")]
+        
         public TElement FirstOrDefault(Func<TElement, bool> predicate, TElement defaultValue)
         {
             return default(TElement);
@@ -166,25 +166,25 @@ namespace System.Linq
 
         public extern EnumerableInstance<Grouping<TKey, TElement>> GroupBy<TKey>(Func<TElement, TKey> keySelector);
 
-        [Template("{this}.groupBy({keySelector}, null, null, {comparer})")]
+        
         public extern EnumerableInstance<Grouping<TKey, TElement>> GroupBy<TKey>(Func<TElement, TKey> keySelector,
             IEqualityComparer<TKey> comparer);
 
         public extern EnumerableInstance<Grouping<TKey, TSource>> GroupBy<TKey, TSource>(Func<TSource, TKey> keySelector,
             Func<TSource, TSource> elementSelector);
 
-        [Template("{this}.groupBy({keySelector}, null, {resultSelector})")]
+        
         public extern EnumerableInstance<TResult> GroupBy<TKey, TResult>(Func<TElement, TKey> keySelector,
             Func<TKey, IEnumerable<TElement>, TResult> resultSelector);
 
-        [Template("{this}.groupBy({keySelector}, {elementSelector}, null, {comparer})")]
+        
         public extern EnumerableInstance<Grouping<TKey, TSource>> GroupBy<TKey, TSource>(Func<TSource, TKey> keySelector,
             Func<TSource, TSource> elementSelector, IEqualityComparer<TKey> comparer);
 
         public extern EnumerableInstance<TResult> GroupBy<TKey, TSource, TResult>(Func<TSource, TKey> keySelector,
             Func<TSource, TSource> elementSelector, Func<TKey, IEnumerable<TSource>, TResult> resultSelector);
 
-        [Template("{this}.groupBy({keySelector}, null, {resultSelector}, {comparer})")]
+        
         public extern EnumerableInstance<TResult> GroupBy<TKey, TResult>(Func<TElement, TKey> keySelector,
             Func<TKey, IEnumerable<TElement>, TResult> resultSelector, IEqualityComparer<TKey> comparer);
 
@@ -232,37 +232,37 @@ namespace System.Linq
 
         public extern int LastIndexOf(TElement item, IEqualityComparer<TElement> comparer);
 
-        [Template("{this}.count()")]
+        
         public static long LongCount<TSource>()
         {
             return default(long);
         }
 
-        [Template("{this}.count({predicate})")]
+        
         public static long LongCount<TSource>(Func<TSource, bool> predicate)
         {
             return default(long);
         }
 
-        [Template("{this}.lastOrDefault(null, Bridge.getDefaultValue({TElement}))")]
+        
         public TElement LastOrDefault()
         {
             return default(TElement);
         }
 
-        [Template("{this}.lastOrDefault(null, {defaultValue})")]
+        
         public TElement LastOrDefault(TElement defaultValue)
         {
             return default(TElement);
         }
 
-        [Template("{this}.lastOrDefault({predicate}, Bridge.getDefaultValue({TElement}))")]
+        
         public TElement LastOrDefault(Func<TElement, bool> predicate)
         {
             return default(TElement);
         }
 
-        [Template("{this}.lastOrDefault({predicate}, {defaultValue})")]
+        
         public TElement LastOrDefault(Func<TElement, bool> predicate, TElement defaultValue)
         {
             return default(TElement);
@@ -362,7 +362,7 @@ namespace System.Linq
             return default(TElement);
         }
 
-        [Template("{this}.ofType({TResult})")]
+        
         public extern EnumerableInstance<TResult> OfType<TResult>();
 
         public extern OrderedEnumerable<TElement> OrderBy();
@@ -382,25 +382,25 @@ namespace System.Linq
 
         public extern EnumerableInstance<Grouping<TKey, TElement>> PartitionBy<TKey>(Func<TElement, TKey> keySelector);
 
-        [Template("{this}.partitionBy({keySelector}, null, null, {comparer})")]
+        
         public extern EnumerableInstance<Grouping<TKey, TElement>> PartitionBy<TKey>(Func<TElement, TKey> keySelector,
             IEqualityComparer<TKey> comparer);
 
         public extern EnumerableInstance<Grouping<TKey, TSource>> PartitionBy<TKey, TSource>(
             Func<TSource, TKey> keySelector, Func<TSource, TSource> elementSelector);
 
-        [Template("{this}.partitionBy({keySelector}, null, {resultSelector})")]
+        
         public extern EnumerableInstance<TResult> PartitionBy<TKey, TResult>(Func<TElement, TKey> keySelector,
             Func<TKey, IEnumerable<TElement>, TResult> resultSelector);
 
-        [Template("{this}.partitionBy({keySelector}, {elementSelector}, null, {comparer})")]
+        
         public extern EnumerableInstance<Grouping<TKey, TSource>> PartitionBy<TKey, TSource>(
             Func<TSource, TKey> keySelector, Func<TSource, TSource> elementSelector, IEqualityComparer<TKey> comparer);
 
         public extern EnumerableInstance<TResult> PartitionBy<TKey, TSource, TResult>(Func<TSource, TKey> keySelector,
             Func<TSource, TSource> elementSelector, Func<TKey, IEnumerable<TSource>, TResult> resultSelector);
 
-        [Template("{this}.partitionBy({keySelector}, null, {resultSelector}, {comparer})")]
+        
         public extern EnumerableInstance<TResult> PartitionBy<TKey, TResult>(Func<TElement, TKey> keySelector,
             Func<TKey, IEnumerable<TElement>, TResult> resultSelector, IEqualityComparer<TKey> comparer);
 
@@ -449,25 +449,25 @@ namespace System.Linq
             return default(TElement);
         }
 
-        [Template("{this}.singleOrDefault(null, Bridge.getDefaultValue({TElement}))")]
+        
         public TElement SingleOrDefault()
         {
             return default(TElement);
         }
 
-        [Template("{this}.singleOrDefault(null, {defaultValue})")]
+        
         public TElement SingleOrDefault(TElement defaultValue)
         {
             return default(TElement);
         }
 
-        [Template("{this}.singleOrDefault({predicate}, Bridge.getDefaultValue({TElement}))")]
+        
         public TElement SingleOrDefault(Func<TElement, bool> predicate)
         {
             return default(TElement);
         }
 
-        [Template("{this}.singleOrDefault({predicate}, {defaultValue})")]
+        
         public TElement SingleOrDefault(Func<TElement, bool> predicate, TElement defaultValue)
         {
             return default(TElement);
@@ -523,18 +523,18 @@ namespace System.Linq
 
         public extern TElement[] ToArray();
 
-        [Template("{this}.toDictionary({keySelector}, null, {TKey}, {TElement})")]
+        
         public extern IDictionary<TKey, TElement> ToDictionary<TKey>(Func<TElement, TKey> keySelector);
 
-        [Template("{this}.toDictionary({keySelector}, null, {TKey}, {TElement}, {comparer})")]
+        
         public extern IDictionary<TKey, TElement> ToDictionary<TKey>(Func<TElement, TKey> keySelector,
             IEqualityComparer<TKey> comparer);
 
-        [Template("{this}.toDictionary({keySelector}, {elementSelector}, {TKey}, {TValue})")]
+        
         public extern IDictionary<TKey, TValue> ToDictionary<TKey, TValue>(Func<TElement, TKey> keySelector,
             Func<TElement, TValue> elementSelector);
 
-        [Template("{this}.toDictionary({keySelector}, {elementSelector}, {TKey}, {TValue}, {comparer})")]
+        
         public extern IDictionary<TKey, TValue> ToDictionary<TKey, TValue>(Func<TElement, TKey> keySelector,
             Func<TElement, TValue> elementSelector, IEqualityComparer<TKey> comparer);
 
@@ -544,12 +544,12 @@ namespace System.Linq
 
         public extern string ToJoinedString(string separator, Func<TElement, string> selector);
 
-        [Template("{this}.toList({TElement})")]
+        
         public extern List<TElement> ToList();
 
         public extern Lookup<TKey, TElement> ToLookup<TKey>(Func<TElement, TKey> keySelector);
 
-        [Template("{this}.toLookup({keySelector}, null, {comparer})")]
+        
         public extern Lookup<TKey, TElement> ToLookup<TKey>(Func<TElement, TKey> keySelector, IEqualityComparer<TKey> comparer);
 
         public extern Lookup<TKey, TSource> ToLookup<TKey, TSource>(Func<TSource, TKey> keySelector,

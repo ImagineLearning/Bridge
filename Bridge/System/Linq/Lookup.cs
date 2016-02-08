@@ -10,7 +10,7 @@ namespace System.Linq
     {
         int Count
         {
-            [Template("count()")]
+            [Template("Count")]
             get;
         }
 
