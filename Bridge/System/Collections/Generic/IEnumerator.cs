@@ -3,8 +3,7 @@ using Bridge;
 namespace System.Collections.Generic
 {
     [External]
-    [Namespace("Bridge")]
-    public interface IEnumerator<out T> : IBridgeClass, IDisposable, IEnumerator
+    public interface IEnumerator<out T> : IDisposable, IEnumerator
     {
         new T Current
         {

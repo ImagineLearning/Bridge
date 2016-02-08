@@ -3,12 +3,12 @@ using Bridge;
 namespace System.Collections
 {
     [External]
-    [Namespace("Bridge")]
-    public interface ICollection : IEnumerable, IBridgeClass
+    
+    public interface ICollection : IEnumerable
     {
         int Count
         {
-            [Template("Bridge.Array.getCount({this})")]
+            
             get;
         }
     }

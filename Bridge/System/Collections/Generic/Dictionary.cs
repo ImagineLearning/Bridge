@@ -3,17 +3,14 @@ using Bridge;
 namespace System.Collections.Generic
 {
     [External]
-    [Namespace("Bridge")]
     public class Dictionary<TKey, TValue> : IDictionary<TKey, TValue>, IBridgeClass
     {
         public Dictionary()
         {
         }
 
-        [Template("new Bridge.Dictionary$2({TKey}, {TValue})()")]
         public extern Dictionary(int capacity);
 
-        [Template("new Bridge.Dictionary$2({TKey}, {TValue})(null, {comparer})")]
         public Dictionary(int capacity, IEqualityComparer<TKey> comparer)
         {
         }
@@ -26,7 +23,6 @@ namespace System.Collections.Generic
         {
         }
 
-        [Template("new Bridge.Dictionary$2({TKey}, {TValue})(null, {comparer})")]
         public Dictionary(IEqualityComparer<TKey> comparer)
         {
         }
@@ -69,12 +65,12 @@ namespace System.Collections.Generic
 
         public TValue this[TKey key]
         {
-            [Template("get({0})")]
+			[Template("get({0})")]
             get
             {
                 return default(TValue);
             }
-            [Template("set({0})")]
+			[Template("set({0})")]
             set
             {
             }

@@ -3,8 +3,7 @@ using Bridge;
 namespace System.Collections.Generic
 {
     [External]
-    [Namespace("Bridge")]
-    public class KeyValuePair<TKey, TValue> : IBridgeClass
+    public class KeyValuePair<TKey, TValue>
     {
         public extern KeyValuePair(TKey key, TValue value);
 

@@ -3,7 +3,6 @@ using Bridge;
 namespace System.Collections.Generic
 {
     [External]
-    [Namespace("Bridge")]
     public class List<T> : IList<T>, IBridgeClass, IAccessorsIndexer
     {
         public List()
@@ -92,7 +91,6 @@ namespace System.Collections.Generic
 
         public extern void Sort(Func<T, T, int> comparison);
 
-        [Template("sort(Bridge.fn.bind({comparer}, {comparer}.compare))")]
         public extern void Sort(IComparer<T> comparer);
 
         public extern void Splice(int start, int deleteCount);

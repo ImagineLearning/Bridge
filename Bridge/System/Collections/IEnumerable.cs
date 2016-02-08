@@ -3,10 +3,10 @@ using Bridge;
 namespace System.Collections
 {
     [External]
-    [Namespace("Bridge")]
-    public interface IEnumerable : IBridgeClass
+    
+    public interface IEnumerable
     {
-        [Template("Bridge.getEnumerator({this})")]
+        
         IEnumerator GetEnumerator();
     }
 }
