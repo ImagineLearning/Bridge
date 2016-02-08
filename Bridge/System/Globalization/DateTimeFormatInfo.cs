@@ -3,7 +3,6 @@ using Bridge;
 namespace System.Globalization
 {
     [External]
-    [Namespace("Bridge")]
     public sealed class DateTimeFormatInfo : IFormatProvider, ICloneable, IBridgeClass
     {
         public DateTimeFormatInfo()
@@ -20,7 +19,6 @@ namespace System.Globalization
         }
 
         [FieldProperty]
-        [Name("amDesignator")]
         public string AMDesignator
         {
             get;
@@ -28,7 +26,6 @@ namespace System.Globalization
         }
 
         [FieldProperty]
-        [Name("pmDesignator")]
         public string PMDesignator
         {
             get;
@@ -162,7 +159,6 @@ namespace System.Globalization
         }
 
         [FieldProperty]
-        [Name("rfc1123Pattern")]
         public string RFC1123Pattern
         {
             get;

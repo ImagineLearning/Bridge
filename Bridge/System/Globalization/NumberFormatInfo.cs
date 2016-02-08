@@ -2,7 +2,6 @@ using Bridge;
 
 namespace System.Globalization
 {
-    [Namespace("Bridge")]
     [External]
     public sealed class NumberFormatInfo : IFormatProvider, ICloneable, IBridgeClass
     {
@@ -19,7 +18,6 @@ namespace System.Globalization
             }
         }
 
-        [Name("nanSymbol")]
         [FieldProperty]
         public string NaNSymbol
         {
