@@ -1,87 +1,195 @@
+using System.Collections;
 using Bridge;
 
 namespace System.Text.RegularExpressions
 {
-    [External]
-    [Name("RegExp")]
-    public sealed class Regex
-    {
-        public Regex(string pattern)
-        {
-        }
+	[External]
+	public static class RegexExtensions
+	{
 
-        public Regex(string pattern, string flags)
-        {
-        }
+	}
 
-        [FieldProperty]
-        [Name("lastIndex")]
-        public int LastIndex
-        {
-            get
-            {
-                return 0;
-            }
-            set
-            {
-            }
-        }
+	[External]
+	public class Regex
+	{
+		public Regex(string pattern)
+		{
 
-        [FieldProperty]
-        [Name("global")]
-        public bool Global
-        {
-            get
-            {
-                return false;
-            }
-        }
+		}
+		public Regex(string pattern, RegexOptions options)
+		{
 
-        [FieldProperty]
-        [Name("ignoreCase")]
-        public bool IgnoreCase
-        {
-            get
-            {
-                return false;
-            }
-        }
+		}
 
-        [FieldProperty]
-        [Name("multiline")]
-        public bool Multiline
-        {
-            get
-            {
-                return false;
-            }
-        }
+		public MatchCollection Matches(string text)
+		{
+			return null;
+		}
 
-        [FieldProperty]
-        [Name("source")]
-        public string Pattern
-        {
-            get
-            {
-                return null;
-            }
-        }
+		public static MatchCollection Matches(string text, string pattern, RegexOptions options = RegexOptions.None)
+		{
+			return null;
+		}
 
-        [FieldProperty]
-        [Name("source")]
-        public string Source
-        {
-            get
-            {
-                return null;
-            }
-        }
+		public bool IsMatch(string text)
+		{
+			return false;
+		}
 
-        public extern string[] Exec(string s);
+		public static string Replace(string text, string pattern, MatchEvaluator evaluator, RegexOptions options = RegexOptions.None)
+		{
+			return null;
+		}
 
-        public extern bool Test(string s);
+		public static string Replace(string text, string pattern, string replacement, RegexOptions options = RegexOptions.None)
+		{
+			return null;
+		}
 
-        [Template("Bridge.regexpEscape({s})")]
-        public static extern string Escape(string s);
-    }
+		public Match Match(string text)
+		{
+			return null;
+		}
+
+		public static Match Match(string text, string pattern, RegexOptions options = RegexOptions.None)
+		{
+			return null;
+		}
+
+		public string Replace(string text, string replacement)
+		{
+			return null;
+		}
+
+		public static string Escape(string text)
+		{
+			return null;
+		}
+
+		public static bool IsMatch(string pattern, string text)
+		{
+			return false;
+		}
+
+		public static string[] Split(string str1, string str2)
+		{
+			return null;
+		}
+
+
+	}
+
+	[External]
+	public class MatchCollection : ICollection
+	{
+		public IEnumerator GetEnumerator()
+		{
+			return null;
+		}
+
+		public int Count { get; private set; }
+
+		public Match this[int i]
+		{
+			get
+			{
+				return null;
+			}
+			set
+			{
+			}
+		}
+	}
+
+	[External]
+	public class Match
+	{
+		public string Value { get; private set; }
+		public bool Success { get; private set; }
+		public int Index { get; private set; }
+		public GroupCollection Groups { get; private set; }
+		public Match NextMatch()
+		{
+			return null;
+		}
+	}
+
+	[External]
+	public class GroupCollection : ICollection
+	{
+		public IEnumerator GetEnumerator()
+		{
+			return null;
+		}
+
+		public int Count { get; private set; }
+
+		public Group this[int i]
+		{
+			get
+			{
+				return null;
+			}
+			set
+			{
+			}
+		}
+
+		//public Group this[string str]
+		//{
+		//	get
+		//	{
+		//		return null;
+		//	}
+		//	set
+		//	{
+		//	}
+		//}
+	}
+
+	[External]
+	public class Group
+	{
+		public string Value { get; private set; }
+		public CaptureCollection Captures { get; private set; }
+
+	}
+
+	[External]
+	public class CaptureCollection : ICollection
+	{
+		public IEnumerator GetEnumerator()
+		{
+			return null;
+		}
+
+		public int Count { get; private set; }
+
+		public Capture this[int i]
+		{
+			get
+			{
+				return null;
+			}
+			set
+			{
+			}
+		}
+	}
+
+	[External]
+	public class Capture
+	{
+		public int Index;
+	}
+
+	[External]
+	public delegate string MatchEvaluator(Match match);
+
+
+	[External]
+	public enum RegexOptions
+	{
+		None, IgnoreCase, Singleline
+	}
 }

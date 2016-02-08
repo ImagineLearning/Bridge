@@ -3,7 +3,6 @@ using Bridge;
 namespace System.Text
 {
     [External]
-    [Namespace("Bridge.Text")]
     public class StringBuilder : IBridgeClass
     {
         public StringBuilder()
@@ -24,7 +23,7 @@ namespace System.Text
         {
         }
 
-        [Template("new Bridge.Text.StringBuilder(\"\", {capacity})")]
+        
         public StringBuilder(int capacity)
             : this(string.Empty, capacity)
         {
@@ -59,7 +58,7 @@ namespace System.Text
             return new StringBuilder();
         }
 
-        [Template("append(String.fromCharCode({value}))")]
+        
         public StringBuilder Append(char value)
         {
             return new StringBuilder();
@@ -110,7 +109,7 @@ namespace System.Text
             return new StringBuilder();
         }
 
-        [Template("append(String.fromCharCode({value}), {repeatCount})")]
+        
         public StringBuilder Append(char value, int repeatCount)
         {
             return new StringBuilder();
@@ -148,7 +147,7 @@ namespace System.Text
             return new StringBuilder();
         }
 
-        [Template("insert({index}, String.fromCharCode({value}))")]
+        
         public StringBuilder Insert(int index, char value)
         {
             return new StringBuilder();
@@ -209,7 +208,7 @@ namespace System.Text
             return new StringBuilder();
         }
 
-        [Template("replace(String.fromCharCode({oldChar}), String.fromCharCode({newChar}))")]
+        
         public StringBuilder Replace(char oldChar, char newChar)
         {
             return new StringBuilder();
@@ -220,7 +219,7 @@ namespace System.Text
             return new StringBuilder();
         }
 
-        [Template("replace(String.fromCharCode({oldChar}), String.fromCharCode({newChar}), {startIndex}, {count})")]
+        
         public StringBuilder Replace(char oldChar, char newChar, int startIndex, int count)
         {
             return new StringBuilder();
