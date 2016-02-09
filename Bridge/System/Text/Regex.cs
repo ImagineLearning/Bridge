@@ -135,16 +135,16 @@ namespace System.Text.RegularExpressions
 			}
 		}
 
-		//public Group this[string str]
-		//{
-		//	get
-		//	{
-		//		return null;
-		//	}
-		//	set
-		//	{
-		//	}
-		//}
+		public new Group this[string str]
+		{
+			get
+			{
+				return null;
+			}
+			set
+			{
+			}
+		}
 	}
 
 	[External]

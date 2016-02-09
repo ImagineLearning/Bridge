@@ -23,8 +23,9 @@ namespace System
             }
         }
 
-        [InlineConst]
         public const string Empty = "";
+
+		
 
         public String(char[] value)
         {
@@ -762,6 +763,7 @@ namespace System
             return false;
         }
 
+		[IndexerName("Chars")]
         public char this[int index]
         {
             get

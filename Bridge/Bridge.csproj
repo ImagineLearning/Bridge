@@ -115,6 +115,7 @@
     <Compile Include="System\Diagnostics\Contracts\PureAttribute.cs" />
     <Compile Include="System\Diagnostics\Debug.cs" />
     <Compile Include="System\Diagnostics\Debugger.cs" />
+    <Compile Include="System\Diagnostics\ManualResetEvent.cs" />
     <Compile Include="System\Diagnostics\Stopwatch.cs" />
     <Compile Include="System\Diagnostics\SuppressMessageAttribute.cs" />
     <Compile Include="System\Directory.cs" />
