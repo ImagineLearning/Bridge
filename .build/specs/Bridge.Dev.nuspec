@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
   <metadata minClientVersion="2.5">
-    <id>Bridge.Dev</id>
+    <id>Bridge.Unity.Dev</id>
     <version>0.0.0</version>
     <title>Bridge.NET</title>
     <authors>Object.NET, Inc.</authors>

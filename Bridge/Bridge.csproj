@@ -246,6 +246,8 @@
     <Compile Include="System\Any.cs" />
     <Compile Include="System\Tuple.cs" />
     <Compile Include="System\Void.cs" />
+    <Compile Include="UnityEngine\UnityEngineClasses.cs" />
+    <Compile Include="UnityEngine\UnityEngineStructs.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Locales\af-ZA.js" />

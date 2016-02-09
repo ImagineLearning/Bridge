@@ -1,5 +1,10 @@
 {
-    "output": "Bridge/output"
+	"output": "Bridge/output",
+	"fileNameCasing": "None",
+	"generateDocumentation": "None",
+	"preserveMemberCase": true,
+	"autoPropertyToField": true,
+	"injectScriptToAssembly": false
     
     // Uncomment to add TypeScript Definition file (.d.ts) generation to your project.
     // , "generateTypeScript": true
