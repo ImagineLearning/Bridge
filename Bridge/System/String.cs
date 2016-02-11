@@ -23,6 +23,7 @@ namespace System
             }
         }
 
+		[InlineConst]
         public const string Empty = "";
 
 		
