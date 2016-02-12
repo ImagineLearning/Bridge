@@ -132,14 +132,10 @@
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
   </Target>
   <!-- NuGet packaging starts -->
+	<!--
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <NuGetBuildPackage>true</NuGetBuildPackage>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <NuGetPackageSourcePath Include="$(SolutionDir).build\specs\Bridge.Contract.nuspec">
-      <Path>$(SolutionDir).build\specs\Bridge.Contract.nuspec</Path>
-    </NuGetPackageSourcePath>
-  </ItemGroup>
   <Import Project="$(SolutionDir)\.build\NuGet.Build.Package.targets" />
   <Target Name="CleanProjectNuGetOutput" BeforeTargets="Clean">
     <ItemGroup>
@@ -148,5 +144,6 @@
     <Message Text="Cleaning NuGet packages in $(ProjectDir)$(OutDir)" Importance="high" />
     <Delete Files="@(FilesToDelete)" ContinueOnError="true" />
   </Target>
+	-->
   <!-- NuGet packaging finishes -->
 </Project>
