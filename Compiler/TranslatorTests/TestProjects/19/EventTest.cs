@@ -34,4 +34,32 @@ namespace Test
 			throw new NotImplementedException();
 		}
 	}
+
+	public class AnotherClass
+	{
+		public EventTest EventTest;
+
+		public void AddEventHandler()
+		{
+			EventTest.Completed += EventTestOnCompleted;
+		}
+
+		public void RemoveEventHandler()
+		{
+			EventTest.Completed -= EventTestOnCompleted;
+		}
+
+		public void AddEventHandlerDelegate()
+		{
+			EventTest.Completed += delegate
+			{
+				throw new NotImplementedException();
+			};
+		}
+
+		private void EventTestOnCompleted(object sender, EventArgs eventArgs)
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

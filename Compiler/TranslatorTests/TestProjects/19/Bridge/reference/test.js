@@ -3,6 +3,24 @@
 (function (globals) {
     "use strict";
 
+    Bridge.define('Test.AnotherClass', {
+        eventTest: null,
+        addEventHandler: function () {
+            this.eventTest.add_Completed(this.eventTestOnCompleted);
+        },
+        removeEventHandler: function () {
+            this.eventTest.remove_Completed(this.eventTestOnCompleted);
+        },
+        addEventHandlerDelegate: function () {
+            this.eventTest.add_Completed(function () {
+                throw new System.NotImplementedException();
+            });
+        },
+        eventTestOnCompleted: function (sender, eventArgs) {
+            throw new System.NotImplementedException();
+        }
+    });
+    
     Bridge.define('Test.EventTest', {
         config: {
             events: {
@@ -13,13 +31,13 @@
             this.Completed(this, new Object());
         },
         addEventHandler: function () {
-            this.addCompleted(this.onCompleted);
+            this.add_Completed(this.onCompleted);
         },
         removeEventHandler: function () {
-            this.removeCompleted(this.onCompleted);
+            this.remove_Completed(this.onCompleted);
         },
         addEventHandlerDelegate: function () {
-            this.addCompleted(function () {
+            this.add_Completed(function () {
                 throw new System.NotImplementedException();
             });
         },

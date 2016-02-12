@@ -407,7 +407,7 @@ namespace Bridge.Translator
                     }
                     else
                     {
-                        this.Write(this.Emitter.AssignmentType == AssignmentOperatorType.Add ? "add" : "remove");
+                        this.Write(this.Emitter.AssignmentType == AssignmentOperatorType.Add ? "add_" : "remove_");
                         this.Write(
                             OverloadsCollection.Create(this.Emitter, memberResult.Member,
                                 this.Emitter.AssignmentType == AssignmentOperatorType.Subtract).GetOverloadName());
