@@ -146,15 +146,6 @@ namespace Bridge.Translator
             {
                 var resolvedMethod = (IMethod)memberResult.Member;
                 bool isStatic = resolvedMethod != null && resolvedMethod.IsStatic;
-
-                if (!isStatic)
-                {
-                    var isExtensionMethod = resolvedMethod.IsExtensionMethod;
-                    this.Write(Bridge.Translator.Emitter.ROOT + "." + (isExtensionMethod ? Bridge.Translator.Emitter.DELEGATE_BIND_SCOPE : Bridge.Translator.Emitter.DELEGATE_BIND) + "(");
-                    this.WriteThis();
-                    this.Write(", ");
-                    appendAdditionalCode = ")";
-                }
             }
 
             if (memberResult != null && memberResult.Member.SymbolKind == SymbolKind.Field && this.Emitter.IsMemberConst(memberResult.Member) && this.Emitter.IsInlineConst(memberResult.Member))
