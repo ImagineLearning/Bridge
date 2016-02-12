@@ -661,9 +661,9 @@ namespace Bridge.Translator
                                     }
                                     else
                                     {
-										this.WriteOpenParentheses();
-										this.WriteCloseParentheses();
-									}
+                                        this.WriteOpenParentheses();
+                                        this.WriteCloseParentheses();
+                                    }
 
                                     if (this.Emitter.UnaryOperatorType == UnaryOperatorType.Increment || this.Emitter.UnaryOperatorType == UnaryOperatorType.PostIncrement)
                                     {
@@ -690,9 +690,9 @@ namespace Bridge.Translator
                                 }
                                 else
                                 {
-									this.WriteOpenParentheses();
-									this.WriteCloseParentheses();
-								}
+                                    this.WriteOpenParentheses();
+                                    this.WriteCloseParentheses();
+                                }
                                 this.WriteComma();
 
                                 if (targetVar != null)
@@ -826,9 +826,8 @@ namespace Bridge.Translator
                             }
                             else
                             {
-								//don't write open close parens after getter
-                                //this.WriteOpenParentheses();
-                                //this.WriteCloseParentheses();
+                                this.WriteOpenParentheses();
+                                this.WriteCloseParentheses();
                             }
                         }
                     }
@@ -877,7 +876,6 @@ namespace Bridge.Translator
                         }
                         else
                         {
-							//check set here
                             this.PushWriter(Helpers.GetPropertyRef(member.Member, this.Emitter, true) + "({0})");
                         }
                     }
