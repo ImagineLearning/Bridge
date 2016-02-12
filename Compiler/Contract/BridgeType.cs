@@ -308,7 +308,8 @@ namespace Bridge.Contract
                     sb.Append(BridgeTypes.ToJsName(typeArg, emitter));
                 }
                 sb.Append(")");
-                name = sb.ToString();
+				//jint requires parens around the generic classes to get the constructor, then call it
+                name = "(" + sb.ToString() +")";
             }
 
             return name;
