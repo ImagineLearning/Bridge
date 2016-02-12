@@ -917,7 +917,7 @@ namespace Bridge.Translator
                         (this.Emitter.AssignmentType == AssignmentOperatorType.Add ||
                          this.Emitter.AssignmentType == AssignmentOperatorType.Subtract))
                     {
-                        this.Write(this.Emitter.AssignmentType == AssignmentOperatorType.Add ? "add" : "remove");
+                        this.Write(this.Emitter.AssignmentType == AssignmentOperatorType.Add ? "add_" : "remove_");
                         this.Write(
                             OverloadsCollection.Create(this.Emitter, member.Member,
                                 this.Emitter.AssignmentType == AssignmentOperatorType.Subtract).GetOverloadName());
