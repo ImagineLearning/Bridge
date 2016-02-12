@@ -262,8 +262,14 @@ namespace Bridge.Contract
                 {
                     name = (string.IsNullOrEmpty(name) ? "" : (name + ".")) + BridgeTypes.GetParentNames(typeDef);
                 }
+				//don't use parameter count for generics, as they cause problems for Jint
+	            var typeName = typeDef.Name;
+	            if (typeDef.HasGenericParameters)
+	            {
+		            typeName = type.Name;
+	            }
 
-                name = (string.IsNullOrEmpty(name) ? "" : (name + ".")) + BridgeTypes.ConvertName(typeDef.Name);
+                name = (string.IsNullOrEmpty(name) ? "" : (name + ".")) + BridgeTypes.ConvertName(typeName);
             }
             else
             {
@@ -396,7 +402,6 @@ namespace Bridge.Contract
         private static System.Collections.Generic.Dictionary<string, string> replacements;
         private static Regex convRegex;
 
-		private static Regex genericCollectionRegex = new Regex(@"(List|Dictionary)\$\d");
 
         public static string ConvertName(string name)
         {
@@ -412,7 +417,7 @@ namespace Bridge.Contract
                 BridgeTypes.convRegex = new Regex("(\\" + String.Join("|\\", replacements.Keys.ToArray()) + ")", RegexOptions.Compiled | RegexOptions.Singleline);
             }
 
-            var convertedName = BridgeTypes.convRegex.Replace
+            return BridgeTypes.convRegex.Replace
             (
                 name,
                 delegate(Match m)
@@ -420,9 +425,6 @@ namespace Bridge.Contract
                     return replacements[m.Value];
                 }
             );
-
-	        convertedName = genericCollectionRegex.Replace(convertedName, "$1");
-	        return convertedName;
         }
 
         public static string GetTypeDefinitionKey(TypeDefinition type)
