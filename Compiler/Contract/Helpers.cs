@@ -572,7 +572,7 @@ namespace Bridge.Contract
                 return noOverload ? emitter.GetEntityName(property, false) : name;
             }
 
-            return (isSetter ? "set" : "get") + name;
+            return /*(isSetter ? "set" : "get") + */name;
         }
 
         public static List<MethodDefinition> GetMethods(TypeDefinition typeDef, IEmitter emitter, List<MethodDefinition> list = null)
