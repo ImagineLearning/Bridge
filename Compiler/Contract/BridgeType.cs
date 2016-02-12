@@ -396,6 +396,8 @@ namespace Bridge.Contract
         private static System.Collections.Generic.Dictionary<string, string> replacements;
         private static Regex convRegex;
 
+		private static Regex genericCollectionRegex = new Regex(@"(List|Dictionary)\$\d");
+
         public static string ConvertName(string name)
         {
             if (BridgeTypes.convRegex == null)
@@ -410,7 +412,7 @@ namespace Bridge.Contract
                 BridgeTypes.convRegex = new Regex("(\\" + String.Join("|\\", replacements.Keys.ToArray()) + ")", RegexOptions.Compiled | RegexOptions.Singleline);
             }
 
-            return BridgeTypes.convRegex.Replace
+            var convertedName = BridgeTypes.convRegex.Replace
             (
                 name,
                 delegate(Match m)
@@ -418,6 +420,9 @@ namespace Bridge.Contract
                     return replacements[m.Value];
                 }
             );
+
+	        convertedName = genericCollectionRegex.Replace(convertedName, "$1");
+	        return convertedName;
         }
 
         public static string GetTypeDefinitionKey(TypeDefinition type)
