@@ -95,6 +95,7 @@ namespace Bridge.Translator.Tests
 		//[TestCase("18", true, true, TestName = "OutputTest 18 - Features")]
 		[TestCase("19", true, true, TestName = "OutputTest 19 - Events: Jint needs underscore and remove bridge.fn.bind")]
 		[TestCase("20", true, true, TestName = "OutputTest 20 - Generic Constructors to match Jint format")]
+		[TestCase("21", true, true, TestName = "OutputTest 21 - Getters and Setters")]
 		public void Test(string folder, bool isToTranslate, bool useSpecialFileCompare)
         {
             var logger = new Logger("Bridge.Test.Runner", true, SimpleFileLoggerWriter.Instance, new ConsoleLoggerWriter());
