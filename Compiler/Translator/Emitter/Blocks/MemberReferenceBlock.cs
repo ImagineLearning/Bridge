@@ -824,13 +824,9 @@ namespace Bridge.Translator
                                 this.WriteThis();
                                 this.WriteCloseParentheses();
                             }
-                            else
-                            {
-								//don't write open close parens after getter
-                                //this.WriteOpenParentheses();
-                                //this.WriteCloseParentheses();
-                            }
-                        }
+							
+							//Removed open close parens after getter for Jint
+						}
                     }
                     else if (this.Emitter.AssignmentType != AssignmentOperatorType.Assign)
                     {
@@ -877,10 +873,10 @@ namespace Bridge.Translator
                         }
                         else
                         {
-							//check set here
-                            this.PushWriter(Helpers.GetPropertyRef(member.Member, this.Emitter, true) + "({0})");
+							//Changed setters from .Interaction(2); to .Interaction = 2; for Jint
+							this.PushWriter(Helpers.GetPropertyRef(member.Member, this.Emitter, true) + " = {0}");
                         }
-                    }
+					}
                 }
                 else if (member.Member.SymbolKind == SymbolKind.Field)
                 {

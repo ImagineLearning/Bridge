@@ -16,7 +16,7 @@
                  * @public
                  * @this TestProject2.TestClassB
                  * @memberof TestProject2.TestClassB
-                 * @function getValue1
+                 * @function Value1
                  * @return  {number}
                  */
                 /**
@@ -24,7 +24,7 @@
                  * @public
                  * @this TestProject2.TestClassB
                  * @memberof TestProject2.TestClassB
-                 * @function setValue1
+                 * @function Value1
                  * @param   {number}    value
                  * @return  {void}
                  */

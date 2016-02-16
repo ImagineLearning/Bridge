@@ -363,8 +363,7 @@ namespace Bridge.Translator
                     else
                     {
                         this.Write(Helpers.GetPropertyRef(memberResult.Member, this.Emitter));
-                        this.WriteOpenParentheses();
-                        this.WriteCloseParentheses();
+						//Removed open close parens after getter for Jint
                     }
                 }
                 else if (this.Emitter.AssignmentType != AssignmentOperatorType.Assign)
@@ -390,9 +389,10 @@ namespace Bridge.Translator
                 }
                 else
                 {
-                    this.PushWriter(Helpers.GetPropertyRef(memberResult.Member, this.Emitter, true) + "({0})");
-                }
-            }
+					//Changed setters from .Interaction(2); to .Interaction = 2; for Jint
+					this.PushWriter(Helpers.GetPropertyRef(memberResult.Member, this.Emitter, true) + " = {0}");
+				}
+			}
             else if (memberResult != null && memberResult.Member is DefaultResolvedEvent)
             {
                 if (this.Emitter.IsAssignment &&

@@ -13,7 +13,7 @@
                  * @public
                  * @this TestProject1.TestClassA
                  * @memberof TestProject1.TestClassA
-                 * @function getValue1
+                 * @function Value1
                  * @return  {number}
                  */
                 /**
@@ -23,7 +23,7 @@
                  * @public
                  * @this TestProject1.TestClassA
                  * @memberof TestProject1.TestClassA
-                 * @function setValue1
+                 * @function Value1
                  * @param   {number}    value
                  * @return  {void}
                  */
