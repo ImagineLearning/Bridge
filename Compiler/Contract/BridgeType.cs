@@ -262,8 +262,14 @@ namespace Bridge.Contract
                 {
                     name = (string.IsNullOrEmpty(name) ? "" : (name + ".")) + BridgeTypes.GetParentNames(typeDef);
                 }
+				//don't use parameter count for generics, as they cause problems for Jint
+	            var typeName = typeDef.Name;
+	            if (typeDef.HasGenericParameters)
+	            {
+		            typeName = type.Name;
+	            }
 
-                name = (string.IsNullOrEmpty(name) ? "" : (name + ".")) + BridgeTypes.ConvertName(typeDef.Name);
+                name = (string.IsNullOrEmpty(name) ? "" : (name + ".")) + BridgeTypes.ConvertName(typeName);
             }
             else
             {
@@ -308,7 +314,8 @@ namespace Bridge.Contract
                     sb.Append(BridgeTypes.ToJsName(typeArg, emitter));
                 }
                 sb.Append(")");
-                name = sb.ToString();
+				//jint requires parens around the generic classes to get the constructor, then call it
+                name = "(" + sb.ToString() +")";
             }
 
             return name;
@@ -394,6 +401,7 @@ namespace Bridge.Contract
 
         private static System.Collections.Generic.Dictionary<string, string> replacements;
         private static Regex convRegex;
+
 
         public static string ConvertName(string name)
         {
