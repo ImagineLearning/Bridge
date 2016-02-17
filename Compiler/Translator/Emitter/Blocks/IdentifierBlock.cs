@@ -491,9 +491,30 @@ namespace Bridge.Translator
             {
                 if (!this.Emitter.Validator.IsIgnoreType(memberResult.Member.DeclaringTypeDefinition) && memberResult.Member.DeclaringTypeDefinition.Kind != TypeKind.Enum)
                 {
-                    this.Write("Bridge.get(" + BridgeTypes.ToJsName(memberResult.Member.DeclaringType, this.Emitter) + ")");
+					//this.Write("Bridge.get(" + BridgeTypes.ToJsName(memberResult.Member.DeclaringType, this.Emitter) + ")");
+
+					var jsName = BridgeTypes.ToJsName(memberResult.Member.DeclaringType, this.Emitter);
+					//if (jsName.StartsWith("(") && jsName.EndsWith(")"))
+					//{
+					// jsName = jsName.Substring(1).Substring(0, jsName.Length - 2);
+					//}
+					//var name = jsName.Substring(jsName.LastIndexOf(".", StringComparison.Ordinal) + 1);
+					//this.Write(name + ".statics");
+	                var typeArgs = "(";
+	                for (var i = 0; i < memberResult.Member.DeclaringType.TypeArguments.Count; i++)
+	                {
+		                typeArgs += memberResult.Member.DeclaringType.TypeArguments[i].Name;
+
+		                if (i < memberResult.Member.DeclaringType.TypeArguments.Count - 1)
+		                {
+			                typeArgs += ", ";
+		                }
+	                }
+	                typeArgs += ")";
+
+	                this.Write(memberResult.Member.DeclaringType.Name + typeArgs + ".statics");
                 }
-                else
+				else
                 {
                     this.Write(BridgeTypes.ToJsName(memberResult.Member.DeclaringType, this.Emitter));
                 }
