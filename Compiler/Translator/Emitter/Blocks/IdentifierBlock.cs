@@ -491,9 +491,9 @@ namespace Bridge.Translator
             {
                 if (!this.Emitter.Validator.IsIgnoreType(memberResult.Member.DeclaringTypeDefinition) && memberResult.Member.DeclaringTypeDefinition.Kind != TypeKind.Enum)
                 {
-                    this.Write("Bridge.get(" + BridgeTypes.ToJsName(memberResult.Member.DeclaringType, this.Emitter) + ")");
-                }
-                else
+					this.Write(memberResult.Member.DeclaringType.Name + ".statics");
+				}
+				else
                 {
                     this.Write(BridgeTypes.ToJsName(memberResult.Member.DeclaringType, this.Emitter));
                 }
