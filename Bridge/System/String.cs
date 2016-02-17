@@ -11,7 +11,6 @@ namespace System
     /// The String global object is a constructor for strings, or a sequence of characters.
     /// </summary>
     [External]
-    [Name("String")]
     public sealed class String : IEnumerable, IEnumerable<char>, IComparable<String>, IEquatable<String>
     {
         [FieldProperty]

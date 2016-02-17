@@ -5,10 +5,10 @@
 
     Bridge.define('Test.GenericsTest', {
         GenericListTest: function () {
-            return new (System.Collections.Generic.List(String))();
+            return new (System.Collections.Generic.List(System.String))();
         },
         GenericDictionaryTest: function () {
-            return new (System.Collections.Generic.Dictionary(String,System.Int32))();
+            return new (System.Collections.Generic.Dictionary(System.String,System.Int32))();
         },
         GenericListTest2: function () {
             return new (System.Collections.Generic.List(Test.TestClass1))();
