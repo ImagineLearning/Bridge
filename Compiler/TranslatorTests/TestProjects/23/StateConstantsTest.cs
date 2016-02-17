@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Test
+﻿namespace Test
 {
 	public class StateConstantsTest
 	{
@@ -11,18 +9,6 @@ namespace Test
 		{
 			var value = StateOne;
 			var value2 = StaticInt;
-		}
-	}
-
-	public class Node<T>
-	{
-		public T myValue;
-		public const int AnInteger = 0;
-
-		public Node(T val)
-		{
-			myValue = val;
-			var value3 = AnInteger;
 		}
 	}
 }
