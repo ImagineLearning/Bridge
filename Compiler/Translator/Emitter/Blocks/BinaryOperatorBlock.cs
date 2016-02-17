@@ -126,25 +126,23 @@ namespace Bridge.Translator
 
             if ((leftIsNull || rightIsNull) && (binaryOperatorExpression.Operator == BinaryOperatorType.Equality || binaryOperatorExpression.Operator == BinaryOperatorType.InEquality))
             {
-                if (binaryOperatorExpression.Operator == BinaryOperatorType.Equality)
-                {
-                    this.Write("!");
-                }
-
-                this.Write("Bridge.hasValue");
-                
-                this.WriteOpenParentheses();
-                
-                if (leftIsNull)
+				if (leftIsNull)
                 {
                     binaryOperatorExpression.Right.AcceptVisitor(this.Emitter);
-                }
+					this.WriteSpace();
+					this.Write(binaryOperatorExpression.OperatorToken.ToString());
+					this.WriteSpace();
+					binaryOperatorExpression.Left.AcceptVisitor(this.Emitter);
+				}
                 else
                 {
                     binaryOperatorExpression.Left.AcceptVisitor(this.Emitter);
-                }
-                
-                this.WriteCloseParentheses();
+					this.WriteSpace();
+					this.Write(binaryOperatorExpression.OperatorToken.ToString());
+					this.WriteSpace();
+					binaryOperatorExpression.Right.AcceptVisitor(this.Emitter);
+				}
+
                 return;
             }
 
