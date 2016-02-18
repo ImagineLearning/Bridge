@@ -191,12 +191,6 @@ namespace Bridge.Translator
                 this.EndBlock();
             }
 
-            if (this.Emitter.ThisRefCounter > savedThisCount)
-            {
-                this.Emitter.Output.Insert(savedPos, Bridge.Translator.Emitter.ROOT + "." + Bridge.Translator.Emitter.DELEGATE_BIND + "(this, ");
-                this.WriteCloseParentheses();
-            }
-
             if (!block && !this.IsAsync)
             {
                 this.EmitTempVars(pos);

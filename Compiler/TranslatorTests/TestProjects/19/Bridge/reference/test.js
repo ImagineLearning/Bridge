@@ -5,6 +5,7 @@
 
     Bridge.define('Test.AnotherClass', {
         eventTest: null,
+        myInt: 0,
         addEventHandler: function () {
             this.eventTest.add_Completed(this.eventTestOnCompleted);
         },
@@ -16,12 +17,18 @@
                 throw new System.NotImplementedException();
             });
         },
+        addEventHandlerDelegateWithStuff: function () {
+            this.eventTest.add_Completed(function () {
+                var s = this.myInt.toString();
+            });
+        },
         eventTestOnCompleted: function (sender, eventArgs) {
             throw new System.NotImplementedException();
         }
     });
     
     Bridge.define('Test.EventTest', {
+        myInt: 0,
         config: {
             events: {
                 Completed: null
@@ -39,6 +46,11 @@
         addEventHandlerDelegate: function () {
             this.add_Completed(function () {
                 throw new System.NotImplementedException();
+            });
+        },
+        addEventHandlerDelegateWithStuff: function () {
+            this.add_Completed(function () {
+                var s = this.myInt.toString();
             });
         },
         onCompleted: function (sender, eventArgs) {
