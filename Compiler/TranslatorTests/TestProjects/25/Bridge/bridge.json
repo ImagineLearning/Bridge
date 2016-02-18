@@ -1,0 +1,11 @@
+{
+	"output": "Bridge/output",
+	"cleanOutputFolderBeforeBuild": true,
+	"outputFormatting": "Formatted",
+	"outputBy": "Project",
+	"fileNameCasing": "None",
+	"generateDocumentation": "None",
+	"preserveMemberCase": true,
+	"autoPropertyToField": true,
+	"injectScriptToAssembly": false
+}

@@ -547,8 +547,9 @@ namespace Bridge.Translator
 
                 if (primitive != null && primitive.Value != null && Regex.Match(primitive.Value.ToString(), "^[_$a-z][_$a-z0-9]*$", RegexOptions.IgnoreCase).Success)
                 {
-                    this.WriteDot();
-                    this.Write(primitive.Value);
+					this.WriteOpenBracket();
+                    this.Write(primitive.LiteralValue);
+					this.WriteCloseBracket();
                 }
                 else
                 {
