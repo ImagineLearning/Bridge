@@ -43,7 +43,7 @@
         getMyValue: function (i) {
             return "";
         }
-    });
+    });//end of class TestProject1.TestClassA
     
     Bridge.define('TestProject2.TestClassB', {
         config: {
@@ -54,7 +54,7 @@
         getYourValue: function (MyParameter) {
             return 0;
         }
-    });
+    });//end of class TestProject2.TestClassB
     
     Bridge.init();
 })(this);

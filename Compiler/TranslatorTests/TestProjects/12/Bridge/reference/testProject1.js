@@ -48,7 +48,7 @@
         getMyValue: function (i) {
             return "";
         }
-    });
+    });//end of class TestProject1.TestClassA
     
     
     

@@ -36,6 +36,8 @@ namespace Bridge.Translator
             set;
         }
 
+	    private string _name;
+
         protected override void DoEmit()
         {
             XmlToJsDoc.EmitComment(this, this.Emitter.Translator.EmitNode);
@@ -78,19 +80,19 @@ namespace Bridge.Translator
             }
 
             var typeDef = this.Emitter.GetTypeDefinition();
-            string name = this.Emitter.Validator.GetCustomTypeName(typeDef, this.Emitter);
+            _name = this.Emitter.Validator.GetCustomTypeName(typeDef, this.Emitter);
             this.IsGeneric = typeDef.GenericParameters.Count > 0;
 
-            if (name.IsEmpty())
+            if (_name.IsEmpty())
             {
-                name = BridgeTypes.DefinitionToJsName(this.TypeInfo.Type, this.Emitter);
+                _name = BridgeTypes.DefinitionToJsName(this.TypeInfo.Type, this.Emitter);
             }
 
             this.Write(Bridge.Translator.Emitter.ROOT + ".define");
 
             this.WriteOpenParentheses();
 
-            this.Write("'" + name, "'");
+            this.Write("'" + _name, "'");
             this.StartPosition = this.Emitter.Output.Length;
             this.Write(", ");
 
@@ -235,6 +237,7 @@ namespace Bridge.Translator
 
             this.WriteCloseParentheses();
             this.WriteSemiColon();
+			this.Write("//end of class " + _name);
 
             var afterDefineMethods = this.GetAfterDefineMethods();
             foreach (var method in afterDefineMethods)

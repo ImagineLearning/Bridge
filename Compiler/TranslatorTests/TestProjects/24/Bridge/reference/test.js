@@ -3,7 +3,7 @@
 (function (globals) {
     "use strict";
 
-    Bridge.define('Test.AnotherClass');
+    Bridge.define('Test.AnotherClass');//end of class Test.AnotherClass
     
     Bridge.define('Test.NullCheckTest', {
         myNullClass: null,
@@ -16,7 +16,7 @@
                 throw new System.NotImplementedException();
             }
         }
-    });
+    });//end of class Test.NullCheckTest
     
     Bridge.init();
 })(this);

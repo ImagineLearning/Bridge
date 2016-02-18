@@ -12,7 +12,7 @@
             var value = StateConstantsTest.statics.StateOne;
             var value2 = StateConstantsTest.statics.staticInt;
         }
-    });
+    });//end of class Test.StateConstantsTest
     
     Bridge.init();
 })(this);

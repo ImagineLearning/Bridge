@@ -11171,7 +11171,7 @@ Bridge.Class.generic('Bridge.ReadOnlyCollection$1', function (T) {
 (function (globals) {
     "use strict";
 
-    Bridge.define('Test.BridgeIssues.N770.IBase');
+    Bridge.define('Test.BridgeIssues.N770.IBase');//end of class Test.BridgeIssues.N770.IBase
     
     Bridge.define('TestProject1.TestClassA', {
         config: {
@@ -11179,7 +11179,7 @@ Bridge.Class.generic('Bridge.ReadOnlyCollection$1', function (T) {
                 value1: 0
             }
         }
-    });
+    });//end of class TestProject1.TestClassA
     
     Bridge.define('TestProject2.TestClassB', {
         config: {
@@ -11187,7 +11187,7 @@ Bridge.Class.generic('Bridge.ReadOnlyCollection$1', function (T) {
                 value1: 0
             }
         }
-    });
+    });//end of class TestProject2.TestClassB
     
     Bridge.define('Test.BridgeIssues.N770.Impl', {
         inherits: [Test.BridgeIssues.N770.IBase],
@@ -11196,7 +11196,7 @@ Bridge.Class.generic('Bridge.ReadOnlyCollection$1', function (T) {
                 Prop: 0
             }
         }
-    });
+    });//end of class Test.BridgeIssues.N770.Impl
     
     Bridge.init();
 })(this);

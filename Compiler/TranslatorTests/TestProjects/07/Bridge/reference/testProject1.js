@@ -11,7 +11,7 @@
                     Value1: 0
                 }
             }
-        });
+        });//end of class TestProject1.TestClassA
         return exports;
     });
     

@@ -14,7 +14,7 @@
     
             dictionary["key2"] = 22;
         }
-    });
+    });//end of class Test.IndexerGetSetTests
     
     Bridge.init();
 })(this);

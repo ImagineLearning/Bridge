@@ -9,7 +9,7 @@
                 Value1: 0
             }
         }
-    });
+    });//end of class TestProject2.TestClassB
     
     Bridge.init();
 })(this);

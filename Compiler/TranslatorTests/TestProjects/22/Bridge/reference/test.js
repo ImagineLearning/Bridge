@@ -34,7 +34,7 @@
     
             var numGreaterThan6 = greaterThan6.Count;
         }
-    });
+    });//end of class Test.ToStringTest
     
     Bridge.init();
 })(this);

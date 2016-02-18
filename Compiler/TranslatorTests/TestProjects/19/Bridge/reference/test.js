@@ -25,7 +25,7 @@
         eventTestOnCompleted: function (sender, eventArgs) {
             throw new System.NotImplementedException();
         }
-    });
+    });//end of class Test.AnotherClass
     
     Bridge.define('Test.EventTest', {
         myInt: 0,
@@ -56,7 +56,7 @@
         onCompleted: function (sender, eventArgs) {
             throw new System.NotImplementedException();
         }
-    });
+    });//end of class Test.EventTest
     
     Bridge.init();
 })(this);

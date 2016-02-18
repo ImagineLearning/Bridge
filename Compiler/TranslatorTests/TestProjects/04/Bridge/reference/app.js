@@ -16,7 +16,7 @@
                 var dontIgnore = base2;
             }
         }
-    });
+    });//end of class Test.BridgeIssues.N783.App
     
     Bridge.init();
 })(this);

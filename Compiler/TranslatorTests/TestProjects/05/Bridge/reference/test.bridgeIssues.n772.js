@@ -33,7 +33,7 @@
                 decimalArray[0]  = Bridge.Decimal(10.0);
             }
         }
-    });
+    });//end of class Test.BridgeIssues.N772.App
     
     
     

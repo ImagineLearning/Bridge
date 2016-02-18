@@ -12,7 +12,7 @@
         test4: function () {
             var isTrue = this.getterSetterTest.MyBool;
         }
-    });
+    });//end of class Test.AnotherClass
     
     Bridge.define('Test.GetterSetterTest', {
         config: {
@@ -29,7 +29,7 @@
             var isTrue = this.MyBool;
             this.MyBool = true;
         }
-    });
+    });//end of class Test.GetterSetterTest
     
     Bridge.init();
 })(this);

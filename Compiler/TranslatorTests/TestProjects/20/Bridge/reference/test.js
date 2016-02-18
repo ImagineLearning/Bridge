@@ -16,11 +16,11 @@
         GenericDictionaryTest2: function () {
             return new (System.Collections.Generic.Dictionary(Test.TestClass1,Test.TestClass2))();
         }
-    });
+    });//end of class Test.GenericsTest
     
-    Bridge.define('Test.TestClass1');
+    Bridge.define('Test.TestClass1');//end of class Test.TestClass1
     
-    Bridge.define('Test.TestClass2');
+    Bridge.define('Test.TestClass2');//end of class Test.TestClass2
     
     Bridge.init();
 })(this);

@@ -33,7 +33,7 @@
                 decimalArray[0]  = Bridge.Decimal(10.0);
             }
         }
-    });
+    });//end of class Test.BridgeIssues.N772.App
     
     Bridge.define('TestProject1.TestClassA', {
         config: {
@@ -41,7 +41,7 @@
                 Value1: 0
             }
         }
-    });
+    });//end of class TestProject1.TestClassA
     
     Bridge.define('TestProject2.TestClassB', {
         config: {
@@ -49,7 +49,7 @@
                 Value1: 0
             }
         }
-    });
+    });//end of class TestProject2.TestClassB
     
     Bridge.init();
 })(this);
