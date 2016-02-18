@@ -98,6 +98,7 @@ namespace Bridge.Translator.Tests
 		[TestCase("21", true, true, TestName = "OutputTest 21 - Getters and Setters")]
 		[TestCase("22", true, true, TestName = "OutputTest 22 - System namespace outputs with correct capitalization")]
 		[TestCase("23", true, true, TestName = "OutputTest 23 - Remove Bridge.get for static variables and constants")]
+		[TestCase("24", true, true, TestName = "OutputTest 24 - Remove Bridge.hasValue as a check for null")]
 		public void Test(string folder, bool isToTranslate, bool useSpecialFileCompare)
         {
             var logger = new Logger("Bridge.Test.Runner", true, SimpleFileLoggerWriter.Instance, new ConsoleLoggerWriter());

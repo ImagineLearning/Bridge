@@ -5,6 +5,7 @@ namespace Test
 	public class EventTest
 	{
 		public event EventHandler Completed;
+		public int MyInt;
 
 		public void FireCompleted()
 		{
@@ -29,6 +30,14 @@ namespace Test
 			};
 		}
 
+		public void AddEventHandlerDelegateWithStuff()
+		{
+			Completed += delegate
+			{
+				var s = MyInt.ToString();
+			};
+		}
+
 		private void OnCompleted(object sender, EventArgs eventArgs)
 		{
 			throw new NotImplementedException();
@@ -38,6 +47,7 @@ namespace Test
 	public class AnotherClass
 	{
 		public EventTest EventTest;
+		public int MyInt;
 
 		public void AddEventHandler()
 		{
@@ -54,6 +64,14 @@ namespace Test
 			EventTest.Completed += delegate
 			{
 				throw new NotImplementedException();
+			};
+		}
+
+		public void AddEventHandlerDelegateWithStuff()
+		{
+			EventTest.Completed += delegate
+			{
+				var s = MyInt.ToString();
 			};
 		}
 
