@@ -96,6 +96,7 @@ namespace Bridge.Translator.Tests
 		[TestCase("19", true, true, TestName = "OutputTest 19 - Events: Jint needs underscore and remove bridge.fn.bind")]
 		[TestCase("20", true, true, TestName = "OutputTest 20 - Generic Constructors to match Jint format")]
 		[TestCase("21", true, true, TestName = "OutputTest 21 - Getters and Setters")]
+		[TestCase("22", true, true, TestName = "OutputTest 22 - System namespace outputs with correct capitalization")]
 		[TestCase("23", true, true, TestName = "OutputTest 23 - Remove Bridge.get for static variables and constants")]
 		public void Test(string folder, bool isToTranslate, bool useSpecialFileCompare)
         {
