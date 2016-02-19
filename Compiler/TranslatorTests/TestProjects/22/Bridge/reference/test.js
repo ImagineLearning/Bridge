@@ -7,7 +7,7 @@
         Test1: function () {
             var i = 500;
     
-            var str = i.ToString();
+            var str = i.toString();
     
             var length = str.Length;
     

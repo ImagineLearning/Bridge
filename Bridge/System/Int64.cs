@@ -37,6 +37,13 @@ namespace System
             return false;
         }
 
+		[Template("toString()")]
+		public override string ToString()
+		{
+			return null;
+		}
+
+		[Template("toString({0}")]
         public string ToString(int radix)
         {
             return null;
@@ -52,11 +59,13 @@ namespace System
             return null;
         }
 
+		[Template("toString({0}")]
         public string ToString(string format)
         {
             return null;
         }
 
+		[Template("toString({0}")]
         public string ToString(string format, IFormatProvider provider)
         {
             return null;

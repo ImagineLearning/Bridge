@@ -47,21 +47,25 @@ namespace System
 
         public extern string Format(string format, IFormatProvider provider);
 
+		[Template("toString({0})")]
         public string ToString(string format)
         {
             return null;
         }
 
+		[Template("toString({0})")]
         public string ToString(string format, IFormatProvider provider)
         {
             return null;
         }
 
+		[Template("toString({0})")]
         public string ToString(IFormatProvider provider)
         {
             return null;
         }
 
+		[Template("toString()")]
         public override string ToString()
         {
             return null;
