@@ -229,7 +229,6 @@ namespace Bridge.Translator
                     }
                 }
 
-                this.WriteDot();
                 var argsInfo = new ArgumentsInfo(this.Emitter, indexerExpression);
                 var argsExpressions = argsInfo.ArgumentsExpressions;
                 var paramsArg = argsInfo.ParamsExpression;
@@ -462,10 +461,9 @@ namespace Bridge.Translator
                     }
                     else
                     {
-                        this.Write(name);
-                        this.WriteOpenParentheses();
+						this.WriteOpenBracket();
                         new ExpressionListBlock(this.Emitter, argsExpressions, paramsArg).Emit();
-                        this.WriteCloseParentheses();
+						this.WriteCloseBracket();
                     }
                 }
                 else
@@ -523,14 +521,13 @@ namespace Bridge.Translator
                     }
                     else
                     {
-                        this.Write(name);
-                        this.WriteOpenParentheses();
-                        this.Emitter.IsAssignment = false;
-                        this.Emitter.IsUnaryAccessor = false;
-                        new ExpressionListBlock(this.Emitter, argsExpressions, paramsArg).Emit();
-                        this.Emitter.IsAssignment = oldIsAssignment;
-                        this.Emitter.IsUnaryAccessor = oldUnary;
-                        this.PushWriter(", {0})");
+						this.WriteOpenBracket();
+						this.Emitter.IsAssignment = false;
+						this.Emitter.IsUnaryAccessor = false;
+						new ExpressionListBlock(this.Emitter, argsExpressions, paramsArg).Emit();
+						this.Emitter.IsAssignment = oldIsAssignment;
+						this.Emitter.IsUnaryAccessor = oldUnary;
+	                    this.PushWriter("] = {0}");
                     }
                 }
             }

@@ -13,6 +13,16 @@
             var val2 = dictionary["key2"];
     
             dictionary["key2"] = 22;
+        },
+        Test2: function () {
+            var list = new (System.Collections.Generic.List(System.String))();
+            list.Add("string1");
+            list.Add("string2");
+    
+            var val1 = list[0];
+            var val2 = list[1];
+    
+            list[1] = "string3";
         }
     });//end of class Test.IndexerGetSetTests
     
