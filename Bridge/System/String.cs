@@ -601,12 +601,14 @@ namespace System
         /// The toLower() method returns the calling string value converted to lowercase.
         /// </summary>
         /// <returns></returns>
+        [Template("{this}.toLowerCase()")]
         public extern string ToLower();
 
         /// <summary>
         /// The toUpper() method returns the calling string value converted to uppercase.
         /// </summary>
         /// <returns></returns>
+        [Template("{this}.toUpperCase()")]
         public extern string ToUpper();
 
         /// <summary>
