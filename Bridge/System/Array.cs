@@ -26,6 +26,9 @@ namespace System
             }
         }
 
+        //[Template("Bridge.Array.indexOfT({array}, {value}, {startIndex})")]
+        public extern static int IndexOf(Array array, Object value, int startIndex);
+
         public extern Array Concat(params object[] items);
 
         /// <summary>
