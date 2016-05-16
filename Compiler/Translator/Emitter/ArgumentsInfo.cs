@@ -338,11 +338,6 @@ namespace Bridge.Translator
                 string[] names = new string[result.Length];
                 int i = 0;
 
-                if (resolvedMethod != null)
-                {
-                    var inlineStr = this.Emitter.GetInline(resolvedMethod);
-                }
-
                 foreach (var arg in arguments)
                 {
                     if (arg is NamedArgumentExpression)
