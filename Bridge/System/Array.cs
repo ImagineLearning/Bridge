@@ -26,8 +26,23 @@ namespace System
             }
         }
 
-        //[Template("Bridge.Array.indexOfT({array}, {value}, {startIndex})")]
+        [Template("Bridge.Array.indexOfT({array}, {value})")]
+        public extern static int IndexOf(Array array, Object value);
+
+        [Template("Bridge.Array.indexOfT({array}, {value}, {startIndex})")]
         public extern static int IndexOf(Array array, Object value, int startIndex);
+
+        [Template("Bridge.Array.indexOfT({array}, {value}, {startIndex}, {count})")]
+        public extern static int IndexOf(Array array, Object value, int startIndex, int count);
+
+        [Template("Bridge.Array.indexOfT({array}, {value})")]
+        public extern static int IndexOf<T>(T[] array, T value);
+
+        [Template("Bridge.Array.indexOfT({array}, {value}, {startIndex})")]
+        public extern static int IndexOf<T>(T[] array, T value, int startIndex);
+
+        [Template("Bridge.Array.indexOfT({array}, {value}, {startIndex}, {count})")]
+        public static extern int IndexOf<T>(T[] array, T value, int startIndex, int count);
 
         public extern Array Concat(params object[] items);
 
