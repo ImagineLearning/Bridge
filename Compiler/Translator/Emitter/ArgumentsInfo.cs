@@ -322,8 +322,8 @@ namespace Bridge.Translator
             if (resolveResult != null)
             {
                 var parameters = resolveResult.Member.Parameters;
-                var resolvedMethod = resolveResult.Member as IMethod;
-                var invocationResult = resolveResult as CSharpInvocationResolveResult;
+                 var resolvedMethod = resolveResult.Member as IMethod;
+                 var invocationResult = resolveResult as CSharpInvocationResolveResult;
                 int shift = 0;
 
                 if (resolvedMethod != null && invocationResult != null &&
@@ -336,13 +336,11 @@ namespace Bridge.Translator
 
                 Expression[] result = new Expression[parameters.Count - shift];
                 string[] names = new string[result.Length];
-                bool named = false;
                 int i = 0;
 
                 if (resolvedMethod != null)
                 {
                     var inlineStr = this.Emitter.GetInline(resolvedMethod);
-                    named = !string.IsNullOrEmpty(inlineStr);
                 }
 
                 foreach (var arg in arguments)
@@ -355,7 +353,6 @@ namespace Bridge.Translator
 
                         result[index] = namedArg.Expression;
                         names[index] = namedArg.Name;
-                        named = true;
                     }
                     else
                     {
@@ -402,7 +399,7 @@ namespace Bridge.Translator
                         {
                             t = p.ConstantValue;
                         }
-                        if (named && !p.IsParams)
+                        if (!p.IsParams)
                         {
                             result[i] = new PrimitiveExpression(t);
                         }

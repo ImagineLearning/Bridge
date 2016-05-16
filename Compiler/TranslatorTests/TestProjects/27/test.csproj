@@ -36,9 +36,8 @@
     <DefineConstants>TEST1;TEST2</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Activity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SubClasses\SpecificActivity.cs" />
+    <Compile Include="DebuggingTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Bridge\bridge.json" />
