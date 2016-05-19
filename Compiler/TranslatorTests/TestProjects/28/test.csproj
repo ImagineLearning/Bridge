@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RemoveAsTest.cs" />
+    <Compile Include="DebuggingTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Bridge\bridge.json" />

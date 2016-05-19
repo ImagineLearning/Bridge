@@ -100,8 +100,9 @@ namespace Bridge.Translator
             }
             else if (this.AsExpression != null)
             {
-                this.EmitCastExpression(this.AsExpression.Expression, this.AsExpression.Type, Bridge.Translator.Emitter.AS);
-            }
+				//this.EmitCastExpression(this.AsExpression.Expression, this.AsExpression.Type, Bridge.Translator.Emitter.AS);
+				this.AsExpression.Expression.AcceptVisitor(this.Emitter);
+			}
             else if (this.IsExpression != null)
             {
                 this.EmitCastExpression(this.IsExpression.Expression, this.IsExpression.Type, Bridge.Translator.Emitter.IS);

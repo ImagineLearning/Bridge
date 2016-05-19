@@ -101,7 +101,8 @@ namespace Bridge.Translator.Tests
 		[TestCase("24", true, true, TestName = "OutputTest 24 - Remove Bridge.hasValue as a check for null")]
 		[TestCase("25", true, true, TestName = "OutputTest 25 - Indexers use square brackets net get() or set()")]
 		[TestCase("26", true, true, TestName = "OutputTest 26 - All default parameters are emitted")]
-		[TestCase("27", true, true, TestName = "OutputTest 27 - Generic test for debugging")]
+		[TestCase("27", true, true, TestName = "OutputTest 27 - Test the 'as' cast gets removed")]
+		[TestCase("28", true, true, TestName = "OutputTest 28 - Generic test for debugging")]
 		public void Test(string folder, bool isToTranslate, bool useSpecialFileCompare)
         {
             var logger = new Logger("Bridge.Test.Runner", true, SimpleFileLoggerWriter.Instance, new ConsoleLoggerWriter());
