@@ -252,6 +252,21 @@ namespace Bridge.Translator
 
             foreach (var ctor in this.TypeInfo.Ctors)
             {
+                bool skip = false;
+                foreach (var attrSection in ctor.Attributes)
+                {
+                    foreach (var attr in attrSection.Attributes)
+                    {
+                        var rr = this.Emitter.Resolver.ResolveNode(attr.Type, this.Emitter);
+                        if (rr.Type.FullName == "Bridge.ExternalAttribute" || rr.Type.FullName == "Bridge.IgnoreAttribute")
+                        {
+                            skip = true;
+                        }
+                    }
+                }
+
+                if (skip) continue;
+
                 this.EnsureComma();
                 this.ResetLocals();
                 var prevMap = this.BuildLocalsMap();

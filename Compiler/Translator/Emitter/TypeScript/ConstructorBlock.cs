@@ -1,4 +1,5 @@
 using Bridge.Contract;
+using Bridge;
 using ICSharpCode.NRefactory.CSharp;
 using Object.Net.Utilities;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace Bridge.Translator.TypeScript
             {
                 name = BridgeTypes.ToTypeScriptName(this.TypeInfo.Type, this.Emitter, false, true);
             }
-
+            
             if (this.TypeInfo.Ctors.Count == 0)
             {
                 this.Write("new ");
