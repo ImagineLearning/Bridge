@@ -51,6 +51,8 @@ namespace System.Collections.Generic
 
         public extern bool Contains(T item);
 
+        public extern T Find(Predicate<T> match);
+
         extern IEnumerator IEnumerable.GetEnumerator();
 
         public extern IEnumerator<T> GetEnumerator();
