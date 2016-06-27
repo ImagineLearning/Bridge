@@ -99,13 +99,15 @@ namespace Bridge.Translator.Tests
 		[TestCase("22", true, true, TestName = "OutputTest 22 - System namespace outputs with correct capitalization")]
 		[TestCase("23", true, true, TestName = "OutputTest 23 - Remove Bridge.get for static variables and constants")]
 		[TestCase("24", true, true, TestName = "OutputTest 24 - Remove Bridge.hasValue as a check for null")]
-		[TestCase("25", true, true, TestName = "OutputTest 25 - Indexers use square brackets net get() or set()")]
+		[TestCase("25", true, true, TestName = "OutputTest 25 - Indexers use square brackets not get() or set()")]
 		[TestCase("26", true, true, TestName = "OutputTest 26 - All default parameters are emitted")]
 		[TestCase("27", true, true, TestName = "OutputTest 27 - Test the 'as' cast gets removed")]
 		[TestCase("28", true, true, TestName = "OutputTest 28 - Generic test for debugging")]
         [TestCase("29", true, true, TestName = "OutputTest 29 - [External] for constuctors")]
         [TestCase("30", true, true, TestName = "OutputTest 30 - [External] for constuctors 2")]
-        public void Test(string folder, bool isToTranslate, bool useSpecialFileCompare)
+		[TestCase("31", true, true, TestName = "OutputTest 31 - Change property names so they don\'t have \"get\" prepended")]
+
+		public void Test(string folder, bool isToTranslate, bool useSpecialFileCompare)
         {
             var logger = new Logger("Bridge.Test.Runner", true, SimpleFileLoggerWriter.Instance, new ConsoleLoggerWriter());
 

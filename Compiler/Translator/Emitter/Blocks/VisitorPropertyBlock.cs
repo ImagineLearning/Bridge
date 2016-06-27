@@ -61,7 +61,7 @@ namespace Bridge.Translator
                 XmlToJsDoc.EmitComment(this, this.PropertyDeclaration);
                 var overloads = OverloadsCollection.Create(this.Emitter, propertyDeclaration, setter);
                 string name = overloads.GetOverloadName();
-                this.Write((setter ? "set" : "get") + name);
+	            this.Write(name);
                 this.WriteColon();
                 this.WriteFunction();
                 this.WriteOpenParentheses();
