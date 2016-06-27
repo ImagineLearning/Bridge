@@ -106,6 +106,7 @@ namespace Bridge.Translator.Tests
         [TestCase("29", true, true, TestName = "OutputTest 29 - [External] for constuctors")]
         [TestCase("30", true, true, TestName = "OutputTest 30 - [External] for constuctors 2")]
 		[TestCase("31", true, true, TestName = "OutputTest 31 - Change property names so they don\'t have \"get\" prepended")]
+		[TestCase("32", true, true, TestName = "OutputTest 32 - Change Bridge.Nullable.eq(var1, var2) to var1 === var2")]
 
 		public void Test(string folder, bool isToTranslate, bool useSpecialFileCompare)
         {

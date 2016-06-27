@@ -214,6 +214,8 @@ namespace Bridge.Translator
             }
 
             bool nullable = orr != null && orr.IsLiftedOperator;
+			//we don't want to use Bride.Nullable... to compare a nullable variable to another value
+	        nullable = false;
             bool isCoalescing = binaryOperatorExpression.Operator == BinaryOperatorType.NullCoalescing;
             string root = Bridge.Translator.Emitter.ROOT + ".Nullable.";
             bool special = nullable;
@@ -323,8 +325,8 @@ namespace Bridge.Translator
                         break;
 
                     case BinaryOperatorType.Equality:
-                        this.Write(rootSpecial ? "eq" : "===");
-                        break;
+						this.Write(rootSpecial ? "eq" : "===");
+						break;
 
                     case BinaryOperatorType.ExclusiveOr:
                         this.Write(rootSpecial ? "xor" : "^");
