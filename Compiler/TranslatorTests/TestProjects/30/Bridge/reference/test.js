@@ -5,10 +5,10 @@
 
     Bridge.define('Test.DDP', {
         inherits: [Test.IDynamicDataProvider],
-        getParsedObjects: function () {
+        ParsedObjects: function () {
             return null;
         },
-        setParsedObjects: function (value) {
+        ParsedObjects: function (value) {
         },
         LoadJson: function (json) {
         },
