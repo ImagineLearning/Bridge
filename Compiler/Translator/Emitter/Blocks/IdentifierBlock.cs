@@ -1,3 +1,4 @@
+using System.Linq;
 using Bridge.Contract;
 using ICSharpCode.NRefactory.CSharp;
 using ICSharpCode.NRefactory.Semantics;
@@ -363,34 +364,64 @@ namespace Bridge.Translator
                     else
                     {
                         this.Write(Helpers.GetPropertyRef(memberResult.Member, this.Emitter));
-						//Removed open close parens after getter for Jint
+
+						//Only write "()" if the property is NOT on an external class
+						//And if the property has a body. When it has a body, we generate a javascript
+						//getter function and need to actually invoke the function
+
+						if (!Emitter.Validator.IsIgnoreType(memberResult.Member.DeclaringTypeDefinition))
+						{
+		                    var prop =
+			                    memberResult.Member.DeclaringTypeDefinition.Properties.FirstOrDefault(
+				                    p => p.FullName == memberResult.Member.FullName);
+		                    if (prop != null && !prop.Getter.BodyRegion.IsEmpty)
+		                    {
+			                    this.WriteOpenParentheses();
+			                    this.WriteCloseParentheses();
+		                    }
+	                    }
                     }
                 }
                 else if (this.Emitter.AssignmentType != AssignmentOperatorType.Assign)
                 {
-                    string trg;
+	                string trg;
 
-                    if (memberResult.Member.IsStatic)
-                    {
-                        trg = BridgeTypes.ToJsName(memberResult.Member.DeclaringType, this.Emitter);
-                    }
-                    else
-                    {
-                        trg = "this";
-                    }
+	                if (memberResult.Member.IsStatic)
+	                {
+		                trg = BridgeTypes.ToJsName(memberResult.Member.DeclaringType, this.Emitter);
+	                }
+	                else
+	                {
+		                trg = "this";
+	                }
 
-                    this.PushWriter(string.Concat(Helpers.GetPropertyRef(memberResult.Member, this.Emitter, true),
-                        "(",
-                        trg,
-                        ".",
-                        Helpers.GetPropertyRef(memberResult.Member, this.Emitter, false),
-                        "()",
-                        "{0})"));
+	                this.PushWriter(string.Concat(Helpers.GetPropertyRef(memberResult.Member, this.Emitter, true),
+		                "(",
+		                trg,
+		                ".",
+		                Helpers.GetPropertyRef(memberResult.Member, this.Emitter, false),
+		                "()",
+		                "{0})"));
                 }
                 else
                 {
-					//Changed setters from .Interaction(2); to .Interaction = 2; for Jint
-					this.PushWriter(Helpers.GetPropertyRef(memberResult.Member, this.Emitter, true) + " = {0}");
+					//Property setter
+					//If a property has a body, call the property like a function .Interaction(2);
+					//If no body, then .Interaction = 2;
+
+	                var prop =
+		                memberResult.Member.DeclaringTypeDefinition.Properties.FirstOrDefault(
+			                p => p.FullName == memberResult.Member.FullName);
+					var propRef = Helpers.GetPropertyRef(memberResult.Member, this.Emitter, true);
+
+					if (prop != null && !prop.Getter.BodyRegion.IsEmpty)
+	                {
+						this.PushWriter(propRef + "({0})");
+					}
+					else
+	                {
+						this.PushWriter(propRef + " = {0}");
+					}
 				}
 			}
             else if (memberResult != null && memberResult.Member is DefaultResolvedEvent)
