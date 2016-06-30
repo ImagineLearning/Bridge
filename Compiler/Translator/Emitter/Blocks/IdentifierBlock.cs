@@ -372,9 +372,12 @@ namespace Bridge.Translator
 						var declaringTypeDef = memberResult.Member.DeclaringTypeDefinition;
 						if (declaringTypeDef != null && !Emitter.Validator.IsIgnoreType(declaringTypeDef))
 						{
-		                    var prop =
-			                    memberResult.Member.DeclaringTypeDefinition.Properties.FirstOrDefault(
-				                    p => p.FullName == memberResult.Member.FullName);
+							IProperty prop = null;
+							if (declaringTypeDef.Properties != null)
+							{
+								prop = declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == memberResult.Member.FullName);
+							}
+
 		                    if (prop != null && !prop.Getter.BodyRegion.IsEmpty)
 		                    {
 			                    this.WriteOpenParentheses();
@@ -412,11 +415,9 @@ namespace Bridge.Translator
 
 					var declaringTypeDef = memberResult.Member.DeclaringTypeDefinition;
 	                IProperty prop = null;
-	                if (declaringTypeDef != null)
+	                if (declaringTypeDef != null && declaringTypeDef.Properties != null)
 	                {
-		                prop =
-			                memberResult.Member.DeclaringTypeDefinition.Properties.FirstOrDefault(
-				                p => p.FullName == memberResult.Member.FullName);
+		                prop = declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == memberResult.Member.FullName);
 	                }
 	                var propRef = Helpers.GetPropertyRef(memberResult.Member, this.Emitter, true);
 
