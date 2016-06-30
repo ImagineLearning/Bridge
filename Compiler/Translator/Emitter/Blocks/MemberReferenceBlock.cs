@@ -830,7 +830,8 @@ namespace Bridge.Translator
 								//And if the property has a body. When it has a body, we generate a javascript
 								//getter function and need to actually invoke the function
 
-								if(!Emitter.Validator.IsIgnoreType(member.Member.DeclaringTypeDefinition))
+								var declaringTypeDef = member.Member.DeclaringTypeDefinition;
+								if (declaringTypeDef != null && !Emitter.Validator.IsIgnoreType(declaringTypeDef))
 	                            {
 		                            var prop =
 			                            member.Member.DeclaringTypeDefinition.Properties.FirstOrDefault(
