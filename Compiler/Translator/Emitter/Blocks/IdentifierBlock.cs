@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Bridge.Contract;
 using ICSharpCode.NRefactory.CSharp;
@@ -368,21 +369,28 @@ namespace Bridge.Translator
 						//Only write "()" if the property is NOT on an external class
 						//And if the property has a body. When it has a body, we generate a javascript
 						//getter function and need to actually invoke the function
-
-						var declaringTypeDef = memberResult.Member.DeclaringTypeDefinition;
-						if (declaringTypeDef != null && !Emitter.Validator.IsIgnoreType(declaringTypeDef))
-						{
-							IProperty prop = null;
-							if (declaringTypeDef.Properties != null)
-							{
-								prop = declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == memberResult.Member.FullName);
-							}
-
-		                    if (prop != null && !prop.Getter.BodyRegion.IsEmpty)
+	                    try
+	                    {
+		                    var declaringTypeDef = memberResult.Member.DeclaringTypeDefinition;
+		                    if (declaringTypeDef != null && !Emitter.Validator.IsIgnoreType(declaringTypeDef))
 		                    {
-			                    this.WriteOpenParentheses();
-			                    this.WriteCloseParentheses();
+			                    IProperty prop = null;
+			                    if (declaringTypeDef.Properties != null)
+			                    {
+				                    prop =
+					                    declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == memberResult.Member.FullName);
+			                    }
+
+			                    if (prop != null && !prop.Getter.BodyRegion.IsEmpty)
+			                    {
+				                    this.WriteOpenParentheses();
+				                    this.WriteCloseParentheses();
+			                    }
 		                    }
+	                    }
+	                    catch (Exception e)
+	                    {
+		                    Console.WriteLine("Error in IdentifierBlock getter section: " + e);
 	                    }
                     }
                 }
@@ -413,23 +421,31 @@ namespace Bridge.Translator
 					//If a property has a body, call the property like a function .Interaction(2);
 					//If no body, then .Interaction = 2;
 
-					var declaringTypeDef = memberResult.Member.DeclaringTypeDefinition;
-	                IProperty prop = null;
-	                if (declaringTypeDef != null && declaringTypeDef.Properties != null)
+	                try
 	                {
-		                prop = declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == memberResult.Member.FullName);
-	                }
-	                var propRef = Helpers.GetPropertyRef(memberResult.Member, this.Emitter, true);
+		                var declaringTypeDef = memberResult.Member.DeclaringTypeDefinition;
+		                IProperty prop = null;
+		                if (declaringTypeDef != null && declaringTypeDef.Properties != null)
+		                {
+			                prop = declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == memberResult.Member.FullName);
+		                }
+		                var propRef = Helpers.GetPropertyRef(memberResult.Member, this.Emitter, true);
 
-					if (prop != null && !prop.Getter.BodyRegion.IsEmpty)
+		                if (prop != null && !prop.Getter.BodyRegion.IsEmpty)
+		                {
+			                this.PushWriter(propRef + "({0})");
+		                }
+		                else
+		                {
+			                this.PushWriter(propRef + " = {0}");
+		                }
+	                }
+	                catch (Exception e)
 	                {
-						this.PushWriter(propRef + "({0})");
-					}
-					else
-	                {
-						this.PushWriter(propRef + " = {0}");
-					}
-				}
+		                Console.WriteLine("Error in IdentifierBlock setter section: " + e);
+		                this.PushWriter(Helpers.GetPropertyRef(memberResult.Member, this.Emitter, true) + " = {0}");
+	                }
+                }
 			}
             else if (memberResult != null && memberResult.Member is DefaultResolvedEvent)
             {

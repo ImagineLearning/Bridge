@@ -830,19 +830,27 @@ namespace Bridge.Translator
 								//And if the property has a body. When it has a body, we generate a javascript
 								//getter function and need to actually invoke the function
 
-								var declaringTypeDef = member.Member.DeclaringTypeDefinition;
-								if (declaringTypeDef != null && !Emitter.Validator.IsIgnoreType(declaringTypeDef))
-								{
-									IProperty prop = null;
-									if (declaringTypeDef.Properties != null)
-									{
-										prop = declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == member.Member.FullName);
-									}
-									if (prop != null && !prop.Getter.BodyRegion.IsEmpty)
+	                            try
+	                            {
+		                            var declaringTypeDef = member.Member.DeclaringTypeDefinition;
+		                            if (declaringTypeDef != null && !Emitter.Validator.IsIgnoreType(declaringTypeDef))
 		                            {
-			                            this.WriteOpenParentheses();
-			                            this.WriteCloseParentheses();
+			                            IProperty prop = null;
+			                            if (declaringTypeDef.Properties != null)
+			                            {
+				                            prop =
+					                            declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == member.Member.FullName);
+			                            }
+			                            if (prop != null && !prop.Getter.BodyRegion.IsEmpty)
+			                            {
+				                            this.WriteOpenParentheses();
+				                            this.WriteCloseParentheses();
+			                            }
 		                            }
+	                            }
+	                            catch (Exception e)
+	                            {
+		                            Console.WriteLine("Caught error in MemberReferenceBlock getter section: " + e);
 	                            }
                             }
 						}
@@ -896,21 +904,29 @@ namespace Bridge.Translator
 							//If a property has a body, call the property like a function .Interaction(2);
 							//If no body, then .Interaction = 2;
 
-							var declaringTypeDef = member.Member.DeclaringTypeDefinition;
-							IProperty prop = null;
-		                    if (declaringTypeDef != null && declaringTypeDef.Properties != null)
+		                    try
 		                    {
-			                    prop = declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == member.Member.FullName);
-		                    }
-		                    var propRef = Helpers.GetPropertyRef(member.Member, this.Emitter, true);
+			                    var declaringTypeDef = member.Member.DeclaringTypeDefinition;
+			                    IProperty prop = null;
+			                    if (declaringTypeDef != null && declaringTypeDef.Properties != null)
+			                    {
+				                    prop = declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == member.Member.FullName);
+			                    }
+			                    var propRef = Helpers.GetPropertyRef(member.Member, this.Emitter, true);
 
-		                    if (prop != null && !prop.Getter.BodyRegion.IsEmpty)
-		                    {
-			                    this.PushWriter(propRef + "({0})");
+			                    if (prop != null && !prop.Getter.BodyRegion.IsEmpty)
+			                    {
+				                    this.PushWriter(propRef + "({0})");
+			                    }
+			                    else
+			                    {
+				                    this.PushWriter(propRef + " = {0}");
+			                    }
 		                    }
-		                    else
+		                    catch (Exception e)
 		                    {
-			                    this.PushWriter(propRef + " = {0}");
+			                    Console.WriteLine("Caught error in MemberReferenceBlock setter section: " + e);
+			                    this.PushWriter(Helpers.GetPropertyRef(member.Member, this.Emitter, true) + " = {0}");
 		                    }
 	                    }
                     }
