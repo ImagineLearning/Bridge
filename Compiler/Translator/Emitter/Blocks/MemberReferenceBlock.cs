@@ -894,9 +894,14 @@ namespace Bridge.Translator
 							//If a property has a body, call the property like a function .Interaction(2);
 							//If no body, then .Interaction = 2;
 
-							var prop =
-			                    member.Member.DeclaringTypeDefinition.Properties.FirstOrDefault(
-				                    p => p.FullName == member.Member.FullName);
+							var declaringTypeDef = member.Member.DeclaringTypeDefinition;
+							IProperty prop = null;
+		                    if (declaringTypeDef != null)
+		                    {
+			                    prop =
+				                    member.Member.DeclaringTypeDefinition.Properties.FirstOrDefault(
+					                    p => p.FullName == member.Member.FullName);
+		                    }
 		                    var propRef = Helpers.GetPropertyRef(member.Member, this.Emitter, true);
 
 		                    if (prop != null && !prop.Getter.BodyRegion.IsEmpty)
