@@ -369,30 +369,24 @@ namespace Bridge.Translator
 						//Only write "()" if the property is NOT on an external class
 						//And if the property has a body. When it has a body, we generate a javascript
 						//getter function and need to actually invoke the function
-	                    try
-	                    {
-		                    var declaringTypeDef = memberResult.Member.DeclaringTypeDefinition;
-		                    if (declaringTypeDef != null && !Emitter.Validator.IsIgnoreType(declaringTypeDef))
-		                    {
-			                    IProperty prop = null;
-			                    if (declaringTypeDef.Properties != null)
-			                    {
-				                    prop =
-					                    declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == memberResult.Member.FullName);
-			                    }
 
-			                    if (prop != null && !prop.Equals(default(IProperty)) && !prop.Getter.BodyRegion.IsEmpty)
-			                    {
-				                    this.WriteOpenParentheses();
-				                    this.WriteCloseParentheses();
-			                    }
-		                    }
-	                    }
-	                    catch (Exception e)
-	                    {
-		                    Console.WriteLine("Error in IdentifierBlock getter section: " + e);
-	                    }
-                    }
+						var declaringTypeDef = memberResult.Member.DeclaringTypeDefinition;
+						if (declaringTypeDef != null && !Emitter.Validator.IsIgnoreType(declaringTypeDef))
+						{
+							IProperty prop = null;
+							if (declaringTypeDef.Properties != null)
+							{
+								prop =
+									declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == memberResult.Member.FullName);
+							}
+
+							if (prop != null && !prop.Equals(default(IProperty)) && prop.Getter != null && !prop.Getter.BodyRegion.IsEmpty)
+							{
+								this.WriteOpenParentheses();
+								this.WriteCloseParentheses();
+							}
+						}
+					}
                 }
                 else if (this.Emitter.AssignmentType != AssignmentOperatorType.Assign)
                 {
@@ -417,36 +411,29 @@ namespace Bridge.Translator
                 }
                 else
                 {
-					//Property setter
-					//If a property has a body, call the property like a function .Interaction(2);
-					//If no body, then .Interaction = 2;
+	                //Property setter
+	                //If a property has a body, call the property like a function .Interaction(2);
+	                //If no body, then .Interaction = 2;
 
-	                try
+	                var declaringTypeDef = memberResult.Member.DeclaringTypeDefinition;
+	                IProperty prop = null;
+	                if (declaringTypeDef != null && declaringTypeDef.Properties != null)
 	                {
-		                var declaringTypeDef = memberResult.Member.DeclaringTypeDefinition;
-		                IProperty prop = null;
-		                if (declaringTypeDef != null && declaringTypeDef.Properties != null)
-		                {
-			                prop = declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == memberResult.Member.FullName);
-						}
-						var propRef = Helpers.GetPropertyRef(memberResult.Member, this.Emitter, true);
+		                prop = declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == memberResult.Member.FullName);
+	                }
+	                var propRef = Helpers.GetPropertyRef(memberResult.Member, this.Emitter, true);
 
-		                if (prop != null && !prop.Equals(default(IProperty)) && !prop.Getter.BodyRegion.IsEmpty)
-		                {
-			                this.PushWriter(propRef + "({0})");
-		                }
-		                else
-		                {
-			                this.PushWriter(propRef + " = {0}");
-		                }
-	                }
-	                catch (Exception e)
+	                if (prop != null && !prop.Equals(default(IProperty)) && prop.Setter != null && !prop.Setter.BodyRegion.IsEmpty)
 	                {
-		                Console.WriteLine("Error in IdentifierBlock setter section: " + e);
-		                this.PushWriter(Helpers.GetPropertyRef(memberResult.Member, this.Emitter, true) + " = {0}");
+		                this.PushWriter(propRef + "({0})");
 	                }
+	                else
+	                {
+		                this.PushWriter(propRef + " = {0}");
+	                }
+
                 }
-			}
+            }
             else if (memberResult != null && memberResult.Member is DefaultResolvedEvent)
             {
                 if (this.Emitter.IsAssignment &&

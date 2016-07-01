@@ -6,6 +6,8 @@
     Bridge.define('Test.MyCoolActivity', {
         inherits: [Test.Activity],
         _myLocalProp: 0,
+        _currentIcon: null,
+        _num: 0,
         config: {
             properties: {
                 AnotherProperty: false
@@ -16,6 +18,15 @@
         },
         MyLocalProperty: function (value) {
             this._myLocalProp = value;
+        },
+        CurrentIcon: function () {
+            return this._currentIcon;
+        },
+        CurrentIcon: function (value) {
+            this._currentIcon = value;
+        },
+        Num: function (value) {
+            this._num = value;
         },
         test5: function () {
             var interaction = this.StateManager.Interaction;
@@ -32,6 +43,18 @@
             this.StateManager.SomethingToSet = true;
             this.MyLocalProperty(5);
             this.AnotherProperty = true;
+        },
+        test12: function () {
+            this._currentIcon.Anim1.Visible(true);
+            this.CurrentIcon().Anim1.Visible(false);
+        },
+        test13: function () {
+            this.Num(100);
+    
+            this.CurrentIcon().add_OnShow(this.currentIconOnOnShow);
+        },
+        currentIconOnOnShow: function (sender, eventArgs) {
+            throw new System.NotImplementedException();
         }
     });//end of class Test.MyCoolActivity
     
@@ -75,6 +98,28 @@
             this.MyBool = true;
         }
     });//end of class Test.GetterSetterTest
+    
+    Bridge.define('Test.MyCoolActivity.AnimationWithSound', {
+        config: {
+            properties: {
+                Animation: null
+            }
+        },
+        Visible: function (value) {
+            this.Animation.Visible = value;
+        }
+    });//end of class Test.MyCoolActivity.AnimationWithSound
+    
+    Bridge.define('Test.MyCoolActivity.Icon', {
+        config: {
+            events: {
+                OnShow: null
+            },
+            properties: {
+                Anim1: null
+            }
+        }
+    });//end of class Test.MyCoolActivity.Icon
     
     Bridge.define('Test.Test_MyCoolActivity', {
         inherits: [Test.MyCoolActivity],

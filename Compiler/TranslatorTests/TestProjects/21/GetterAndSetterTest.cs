@@ -65,6 +65,17 @@ namespace Test
 		public int MyLocalProperty { get {return _myLocalProp;} set { _myLocalProp = value; } }
 		public bool AnotherProperty { get; set; }
 
+		private Icon _currentIcon;
+
+		public Icon CurrentIcon
+		{
+			get { return _currentIcon; }
+			set { _currentIcon = value; }
+		}
+
+		private int _num;
+		public int Num { set { _num = value; } }
+
 		public void Test5()
 		{
 			var interaction = this.StateManager.Interaction;
@@ -87,6 +98,46 @@ namespace Test
 			StateManager.SomethingToSet = true;
 			MyLocalProperty = 5;
 			AnotherProperty = true;
+		}
+
+		public void Test12()
+		{
+			_currentIcon.Anim1.Visible = true;
+			CurrentIcon.Anim1.Visible = false;
+		}
+
+		public void Test13()
+		{
+			Num = 100;
+
+			CurrentIcon.OnShow += CurrentIconOnOnShow;
+		}
+
+		private void CurrentIconOnOnShow(object sender, EventArgs eventArgs)
+		{
+			throw new NotImplementedException();
+		}
+
+
+		public class Icon
+		{
+			public AnimationWithSound Anim1 { get; set; }
+			public event EventHandler OnShow;
+		}
+
+		public class AnimationWithSound
+		{
+			private IAnimation Animation { get; set; }
+			public bool Visible
+			{
+				set { Animation.Visible = value; }
+			}
+		}
+
+		[External]
+		public interface IAnimation
+		{
+			bool Visible { get; set; }
 		}
 	}
 

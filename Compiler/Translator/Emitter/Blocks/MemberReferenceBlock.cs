@@ -817,43 +817,37 @@ namespace Bridge.Translator
                         else
                         {
                             this.Write(Helpers.GetPropertyRef(member.Member, this.Emitter));
-                            if (proto)
-                            {
-                                this.Write(".call");
-                                this.WriteOpenParentheses();
-                                this.WriteThis();
-                                this.WriteCloseParentheses();
-                            }
-                            else
-                            {
-								//Only write "()" if the property is NOT on an external class
-								//And if the property has a body. When it has a body, we generate a javascript
-								//getter function and need to actually invoke the function
+	                        if (proto)
+	                        {
+		                        this.Write(".call");
+		                        this.WriteOpenParentheses();
+		                        this.WriteThis();
+		                        this.WriteCloseParentheses();
+	                        }
+	                        else
+	                        {
+		                        //Only write "()" if the property is NOT on an external class
+		                        //And if the property has a body. When it has a body, we generate a javascript
+		                        //getter function and need to actually invoke the function
 
-	                            try
-	                            {
-		                            var declaringTypeDef = member.Member.DeclaringTypeDefinition;
-		                            if (declaringTypeDef != null && !Emitter.Validator.IsIgnoreType(declaringTypeDef))
-		                            {
-			                            IProperty prop = null;
-			                            if (declaringTypeDef.Properties != null)
-			                            {
-				                            prop =
-					                            declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == member.Member.FullName);
-			                            }
-			                            if (prop != null && !prop.Equals(default(IProperty)) && !prop.Getter.BodyRegion.IsEmpty)
-			                            {
-				                            this.WriteOpenParentheses();
-				                            this.WriteCloseParentheses();
-			                            }
-		                            }
-	                            }
-	                            catch (Exception e)
-	                            {
-		                            Console.WriteLine("Caught error in MemberReferenceBlock getter section: " + e);
-	                            }
-                            }
-						}
+		                        var declaringTypeDef = member.Member.DeclaringTypeDefinition;
+		                        if (declaringTypeDef != null && !Emitter.Validator.IsIgnoreType(declaringTypeDef))
+		                        {
+			                        IProperty prop = null;
+			                        if (declaringTypeDef.Properties != null)
+			                        {
+				                        prop =
+					                        declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == member.Member.FullName);
+			                        }
+			                        if (prop != null && !prop.Equals(default(IProperty)) && prop.Getter != null &&
+			                            !prop.Getter.BodyRegion.IsEmpty)
+			                        {
+				                        this.WriteOpenParentheses();
+				                        this.WriteCloseParentheses();
+			                        }
+		                        }
+	                        }
+                        }
                     }
                     else if (this.Emitter.AssignmentType != AssignmentOperatorType.Assign)
                     {
@@ -900,33 +894,26 @@ namespace Bridge.Translator
 	                    }
 	                    else
 	                    {
-							//Property setter
-							//If a property has a body, call the property like a function .Interaction(2);
-							//If no body, then .Interaction = 2;
+		                    //Property setter
+		                    //If a property has a body, call the property like a function .Interaction(2);
+		                    //If no body, then .Interaction = 2;
 
-		                    try
+		                    var declaringTypeDef = member.Member.DeclaringTypeDefinition;
+		                    IProperty prop = null;
+		                    if (declaringTypeDef != null && declaringTypeDef.Properties != null)
 		                    {
-			                    var declaringTypeDef = member.Member.DeclaringTypeDefinition;
-			                    IProperty prop = null;
-			                    if (declaringTypeDef != null && declaringTypeDef.Properties != null)
-			                    {
-				                    prop = declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == member.Member.FullName);
-			                    }
-			                    var propRef = Helpers.GetPropertyRef(member.Member, this.Emitter, true);
-
-			                    if (prop != null && !prop.Equals(default(IProperty)) && !prop.Getter.BodyRegion.IsEmpty)
-			                    {
-				                    this.PushWriter(propRef + "({0})");
-			                    }
-			                    else
-			                    {
-				                    this.PushWriter(propRef + " = {0}");
-			                    }
+			                    prop = declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == member.Member.FullName);
 		                    }
-		                    catch (Exception e)
+		                    var propRef = Helpers.GetPropertyRef(member.Member, this.Emitter, true);
+
+		                    if (prop != null && !prop.Equals(default(IProperty)) && prop.Setter != null &&
+		                        !prop.Setter.BodyRegion.IsEmpty)
 		                    {
-			                    Console.WriteLine("Caught error in MemberReferenceBlock setter section: " + e);
-			                    this.PushWriter(Helpers.GetPropertyRef(member.Member, this.Emitter, true) + " = {0}");
+			                    this.PushWriter(propRef + "({0})");
+		                    }
+		                    else
+		                    {
+			                    this.PushWriter(propRef + " = {0}");
 		                    }
 	                    }
                     }
