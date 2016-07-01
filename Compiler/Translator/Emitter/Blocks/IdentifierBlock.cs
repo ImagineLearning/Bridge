@@ -381,7 +381,7 @@ namespace Bridge.Translator
 					                    declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == memberResult.Member.FullName);
 			                    }
 
-			                    if (prop != null && !prop.Getter.BodyRegion.IsEmpty)
+			                    if (prop != null && !prop.Equals(default(IProperty)) && !prop.Getter.BodyRegion.IsEmpty)
 			                    {
 				                    this.WriteOpenParentheses();
 				                    this.WriteCloseParentheses();
@@ -428,10 +428,10 @@ namespace Bridge.Translator
 		                if (declaringTypeDef != null && declaringTypeDef.Properties != null)
 		                {
 			                prop = declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == memberResult.Member.FullName);
-		                }
-		                var propRef = Helpers.GetPropertyRef(memberResult.Member, this.Emitter, true);
+						}
+						var propRef = Helpers.GetPropertyRef(memberResult.Member, this.Emitter, true);
 
-		                if (prop != null && !prop.Getter.BodyRegion.IsEmpty)
+		                if (prop != null && !prop.Equals(default(IProperty)) && !prop.Getter.BodyRegion.IsEmpty)
 		                {
 			                this.PushWriter(propRef + "({0})");
 		                }
