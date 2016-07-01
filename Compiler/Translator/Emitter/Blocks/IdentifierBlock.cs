@@ -369,29 +369,29 @@ namespace Bridge.Translator
 						//Only write "()" if the property is NOT on an external class
 						//And if the property has a body. When it has a body, we generate a javascript
 						//getter function and need to actually invoke the function
-	                    //try
-	                    //{
-		                   // var declaringTypeDef = memberResult.Member.DeclaringTypeDefinition;
-		                   // if (declaringTypeDef != null && !Emitter.Validator.IsIgnoreType(declaringTypeDef))
-		                   // {
-			                  //  IProperty prop = null;
-			                  //  if (declaringTypeDef.Properties != null)
-			                  //  {
-				                 //   prop =
-					                //    declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == memberResult.Member.FullName);
-			                  //  }
+	                    try
+	                    {
+		                    var declaringTypeDef = memberResult.Member.DeclaringTypeDefinition;
+		                    if (declaringTypeDef != null && !Emitter.Validator.IsIgnoreType(declaringTypeDef))
+		                    {
+			                    IProperty prop = null;
+			                    if (declaringTypeDef.Properties != null)
+			                    {
+				                    prop =
+					                    declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == memberResult.Member.FullName);
+			                    }
 
-			                  //  if (prop != null && !prop.Getter.BodyRegion.IsEmpty)
-			                  //  {
-				                 //   this.WriteOpenParentheses();
-				                 //   this.WriteCloseParentheses();
-			                  //  }
-		                   // }
-	                    //}
-	                    //catch (Exception e)
-	                    //{
-		                   // Console.WriteLine("Error in IdentifierBlock getter section: " + e);
-	                    //}
+			                    if (prop != null && !prop.Getter.BodyRegion.IsEmpty)
+			                    {
+				                    this.WriteOpenParentheses();
+				                    this.WriteCloseParentheses();
+			                    }
+		                    }
+	                    }
+	                    catch (Exception e)
+	                    {
+		                    Console.WriteLine("Error in IdentifierBlock getter section: " + e);
+	                    }
                     }
                 }
                 else if (this.Emitter.AssignmentType != AssignmentOperatorType.Assign)
@@ -420,33 +420,32 @@ namespace Bridge.Translator
 					//Property setter
 					//If a property has a body, call the property like a function .Interaction(2);
 					//If no body, then .Interaction = 2;
-					this.PushWriter(Helpers.GetPropertyRef(memberResult.Member, this.Emitter, true) + " = {0}");
 
-					//try
-					//{
-					// var declaringTypeDef = memberResult.Member.DeclaringTypeDefinition;
-					// IProperty prop = null;
-					// if (declaringTypeDef != null && declaringTypeDef.Properties != null)
-					// {
-					//  prop = declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == memberResult.Member.FullName);
-					// }
-					// var propRef = Helpers.GetPropertyRef(memberResult.Member, this.Emitter, true);
+	                try
+	                {
+		                var declaringTypeDef = memberResult.Member.DeclaringTypeDefinition;
+		                IProperty prop = null;
+		                if (declaringTypeDef != null && declaringTypeDef.Properties != null)
+		                {
+			                prop = declaringTypeDef.Properties.FirstOrDefault(p => p.FullName == memberResult.Member.FullName);
+		                }
+		                var propRef = Helpers.GetPropertyRef(memberResult.Member, this.Emitter, true);
 
-					// if (prop != null && !prop.Getter.BodyRegion.IsEmpty)
-					// {
-					//  this.PushWriter(propRef + "({0})");
-					// }
-					// else
-					// {
-					//  this.PushWriter(propRef + " = {0}");
-					// }
-					//}
-					//catch (Exception e)
-					//{
-					// Console.WriteLine("Error in IdentifierBlock setter section: " + e);
-					// this.PushWriter(Helpers.GetPropertyRef(memberResult.Member, this.Emitter, true) + " = {0}");
-					//}
-				}
+		                if (prop != null && !prop.Getter.BodyRegion.IsEmpty)
+		                {
+			                this.PushWriter(propRef + "({0})");
+		                }
+		                else
+		                {
+			                this.PushWriter(propRef + " = {0}");
+		                }
+	                }
+	                catch (Exception e)
+	                {
+		                Console.WriteLine("Error in IdentifierBlock setter section: " + e);
+		                this.PushWriter(Helpers.GetPropertyRef(memberResult.Member, this.Emitter, true) + " = {0}");
+	                }
+                }
 			}
             else if (memberResult != null && memberResult.Member is DefaultResolvedEvent)
             {
