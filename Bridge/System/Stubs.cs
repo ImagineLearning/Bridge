@@ -1,3 +1,4 @@
+using System.Reflection;
 using Bridge;
 
 namespace System
@@ -5,8 +6,10 @@ namespace System
     [External]
     [Name("Function")]
     public class Type
-    {
-        public static extern Type GetTypeFromHandle(RuntimeTypeHandle typeHandle);
+	{
+		public string Name { get; }
+		public extern MethodInfo[] GetMethods();
+		public static extern Type GetTypeFromHandle(RuntimeTypeHandle typeHandle);
     }
 
     [External]

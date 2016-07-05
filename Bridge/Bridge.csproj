@@ -115,6 +115,7 @@
     <Compile Include="System\Diagnostics\Contracts\PureAttribute.cs" />
     <Compile Include="System\Diagnostics\Debug.cs" />
     <Compile Include="System\Diagnostics\Debugger.cs" />
+    <Compile Include="System\Reflection\MethodInfo.cs" />
     <Compile Include="System\Threading\ManualResetEvent.cs" />
     <Compile Include="System\Diagnostics\Stopwatch.cs" />
     <Compile Include="System\Diagnostics\SuppressMessageAttribute.cs" />
@@ -729,7 +730,7 @@
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
   </Target>
   <!-- NuGet packaging starts -->
-	<!--
+  <!--
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <NuGetBuildPackage>true</NuGetBuildPackage>
   </PropertyGroup>
