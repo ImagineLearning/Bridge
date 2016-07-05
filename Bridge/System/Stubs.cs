@@ -7,7 +7,7 @@ namespace System
     [Name("Function")]
     public class Type
 	{
-		public string Name { get; }
+		public string Name { get; private set; }
 		public extern MethodInfo[] GetMethods();
 		public static extern Type GetTypeFromHandle(RuntimeTypeHandle typeHandle);
     }
